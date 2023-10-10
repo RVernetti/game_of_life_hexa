@@ -1,3 +1,13 @@
+.layout {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  gap: 20px;
+}
+
 .main {
   display: flex;
   flex-direction: column;
