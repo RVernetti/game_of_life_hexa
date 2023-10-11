@@ -12,7 +12,7 @@ const HomePage = () => {
       <Button onClick={() => console.log('Button clicked')}>
         Run
       </Button>
-      <Cell onClick={() => console.log('Cell clicked')}/>
+      <Cell onClick={() => console.log('Cell clicked')} living/>
     </div>
   )
 }

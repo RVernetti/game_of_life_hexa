@@ -1,13 +1,19 @@
 import React from 'react'
-import { Button } from '@/interfaces/button.interface'
 import styles from './cell.module.css'
 
-const Cell = (props: Button) => {
-    const { onClick, children, style } = props
+interface Cell {
+    onClick: React.MouseEventHandler<HTMLButtonElement>
+    children?: React.ReactNode
+    style?: object
+    living?: boolean
+}
+
+const Cell = (props: Cell) => {
+    const { onClick, children, style, living } = props
 
     return (
         <button 
-            className={styles.cell} 
+            className={living ? styles.living_cell : styles.dead_cell} 
             onClick={onClick} 
             style={style}
         >
