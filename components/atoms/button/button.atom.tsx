@@ -1,6 +1,11 @@
 import React from 'react'
-import { Button } from '@/interfaces/button.interface'
 import styles from './button.module.css'
+
+interface Button {
+    onClick: React.MouseEventHandler<HTMLButtonElement>
+    children?: React.ReactNode
+    style?: object
+}
 
 const Button = (props: Button) => {
     const { onClick, children, style } = props
