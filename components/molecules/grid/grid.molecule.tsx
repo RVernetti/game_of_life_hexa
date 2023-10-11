@@ -36,8 +36,8 @@ const Grid = (props: Grid) => {
         key={`Cell's cubic coordinates: [q: ${q}, r: ${r}, s: ${s}]`}
         onClick={() => console.log('Cell:', cell)}
         style={{
-          left: x - 25, // to center cells (half their size of 50px)
-          top: y - 25, // to center cells (half their size of 50px)
+          left: x - 12.5, // to center cells from their origin
+          top: y - 12.5, // to center cells from their origin
         }}
         living={living}
       />
@@ -46,7 +46,7 @@ const Grid = (props: Grid) => {
 
   return (
     <div className={styles.grid}>
-      <div style={{ position: 'relative'}}>
+      <div className={styles.layout}>
         {display}
       </div>
     </div>

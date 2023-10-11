@@ -6,3 +6,7 @@
     justify-content: center;
     overflow: hidden;
 }
+
+.layout {
+    position: relative;
+}
