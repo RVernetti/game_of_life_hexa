@@ -15,7 +15,7 @@ const Cell = (props: Cell) => {
 
     return (
         <button 
-            className={living ? styles.living_cell : styles.dead_cell} 
+            className={living ? styles.living : styles.dead} 
             onClick={onClick}
             style={style}
         >
