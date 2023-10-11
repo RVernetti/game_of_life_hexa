@@ -34,11 +34,11 @@ const Grid = (props: Grid) => {
     return (
       <Cell
         key={`Cell's cubic coordinates: [q: ${q}, r: ${r}, s: ${s}]`}
-        onClick={() => console.log('Cell:', cell)} 
-        style={{ 
+        onClick={() => console.log('Cell:', cell)}
+        style={{
           left: x - 25, // to center cells (half their size of 50px)
           top: y - 25, // to center cells (half their size of 50px)
-        }} 
+        }}
         living={living}
       />
     )

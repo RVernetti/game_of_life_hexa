@@ -2,8 +2,7 @@
 
 import React from 'react'
 import styles from './page.module.css'
-import { Grid } from '@/components/molecules'
-import { Button } from '@/components/atoms'
+import { Grid, Panel } from '@/components/molecules'
 
 
 const HomePage = () => {
@@ -11,9 +10,7 @@ const HomePage = () => {
   return (
     <div className={styles.layout}>
       <Grid/>
-      <Button onClick={() => console.log('Button clicked')}>
-        Run
-      </Button>
+      <Panel/>
     </div>
   )
 }

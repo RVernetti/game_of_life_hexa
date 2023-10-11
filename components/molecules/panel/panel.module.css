@@ -1,8 +1,7 @@
 .main {
     height: 100%; 
-    width: 100%;
+    width: 20vw; 
     display: flex; 
-    align-items: center;
+    align-items: center; 
     justify-content: center;
-    overflow: hidden;
 }
