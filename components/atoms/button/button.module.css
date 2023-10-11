@@ -1,4 +1,4 @@
-.main {
+.button {
     transition: 0.5s;
     border-radius: 12px;
     padding: 5px 10px;
@@ -11,7 +11,7 @@
 
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
-    .main:hover {
+    .button:hover {
         cursor: pointer;
         background-color: #000000;
         color: #FFFFFF;
