@@ -1,31 +1,26 @@
 'use client'
-import React from 'react'
 
-import { Cell } from '@/components/atoms'
+import React from 'react'
 
 import { ISquareCoordinates } from '@/interfaces/coordinates.interface'
 import { ICell } from '@/interfaces/grid.interface'
+
+import { Cell } from '@/components/atoms'
+
 import { generateGrid } from '@/helpers/grid.helper'
 import { Point, Layout } from '@/helpers/hexagonal.helper'
 
+import styles from './grid.module.css'
+
 interface Grid {
-  radius: number
+  radius?: number
   origin?: ISquareCoordinates
   hexSize?: ISquareCoordinates
 }
 
-const gridStyle = { 
-  height: '100%', 
-  width: '100%', 
-  display: 'flex', 
-  alignItems: 'center', 
-  justifyContent: 'center', 
-  overflow: 'hidden' 
-}
-
 const Grid = (props: Grid) => {
   const {
-    radius,
+    radius = 6,
     origin = new Point(0, 0), 
     hexSize = new Point(29, 29),
   } = props
@@ -50,7 +45,7 @@ const Grid = (props: Grid) => {
   })
 
   return (
-    <div style={gridStyle}>
+    <div className={styles.grid}>
       <div style={{ position: 'relative'}}>
         {display}
       </div>
