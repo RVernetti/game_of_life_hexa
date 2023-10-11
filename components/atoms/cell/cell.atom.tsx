@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from '@/interfaces/button.interface'
-import styles from './button.module.css'
+import styles from './cell.module.css'
 
 const Cell = (props: Button) => {
     const { onClick, children, style } = props

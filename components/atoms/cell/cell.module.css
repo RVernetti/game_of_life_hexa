@@ -1,6 +1,6 @@
 .cell {
     transition: 0.5s;
-    border-radius: 1OOOpx;
+    border-radius: 1000px;
     padding: 5px 10px;
     box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.1);
     background-color: #FFFFFF;
