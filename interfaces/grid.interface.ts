@@ -1,8 +1,8 @@
-import { CubicCoordinates } from './coordinates.interface'
+import { ICubicCoordinates } from './coordinates.interface'
 
-export interface Cell {
-    coordinates: CubicCoordinates,
+export interface ICell {
+    coordinates: ICubicCoordinates,
     living?: boolean,
 }
 
-export interface Grid extends Array<Cell> {}
+export interface IGrid extends Array<ICell> {}
