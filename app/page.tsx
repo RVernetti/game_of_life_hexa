@@ -2,7 +2,7 @@
 
 import React from 'react'
 import styles from './page.module.css'
-import { Button } from '@/components/atoms'
+import { Button, Cell } from '@/components/atoms'
 
 
 const HomePage = () => {
@@ -12,6 +12,7 @@ const HomePage = () => {
       <Button onClick={() => console.log('Button clicked')}>
         Run
       </Button>
+      <Cell onClick={() => console.log('Cell clicked')}/>
     </div>
   )
 }
