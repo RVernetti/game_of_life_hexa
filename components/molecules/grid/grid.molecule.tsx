@@ -28,7 +28,7 @@ const Grid = (props: Grid) => {
   const layout = new Layout(Layout.flat, hexSize, origin)
 
   const display = generateGrid(radius).map((cell: ICell) => {
-    const { coordinates, living } = cell
+    const { coordinates, alive } = cell
     const { q, r, s } = coordinates
     const { x, y } = layout.hexToPixel(coordinates)
     return (

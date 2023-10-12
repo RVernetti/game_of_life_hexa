@@ -7,7 +7,7 @@ interface Cell {
     onClick: React.MouseEventHandler<HTMLButtonElement>
     children?: React.ReactNode
     style?: object
-    living?: boolean
+    alive?: boolean
 }
 
 const Cell = (props: Cell) => {

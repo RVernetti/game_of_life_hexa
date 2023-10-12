@@ -12,7 +12,7 @@ const generateGrid = (radius: number) => {
         for(let r = -radius; r <= radius; ++r){
             for(let s = -radius; s <= radius; ++s){
                 if (Math.round(q + r + s) === 0){
-                    grid.push({ coordinates: new Hex(q,r,s), living: false })
+                    grid.push({ coordinates: new Hex(q,r,s), alive: false })
                 }                    
             }
         }

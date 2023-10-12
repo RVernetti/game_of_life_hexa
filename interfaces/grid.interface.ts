@@ -2,7 +2,7 @@ import { ICubicCoordinates } from './coordinates.interface'
 
 export interface ICell {
     coordinates: ICubicCoordinates,
-    living?: boolean,
+    alive?: boolean,
 }
 
 export interface IGrid extends Array<ICell> {}
