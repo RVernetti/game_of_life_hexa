@@ -39,7 +39,7 @@ const Grid = (props: Grid) => {
           left: x - 12.5, // to center cells from their origin
           top: y - 12.5, // to center cells from their origin
         }}
-        living={living}
+        alive={alive}
       />
     )
   })

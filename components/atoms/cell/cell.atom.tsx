@@ -11,11 +11,11 @@ interface Cell {
 }
 
 const Cell = (props: Cell) => {
-    const { onClick, children, style, living } = props
+    const { onClick, children, style, alive } = props
 
     return (
         <button 
-            className={living ? styles.living : styles.dead} 
+            className={alive ? styles.alive : styles.dead} 
             onClick={onClick}
             style={style}
         >
