@@ -1,38 +1,34 @@
-.alive {
-    transition: 0.5s;
-    border-radius: 1000px;
-    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.05);
-    background-color: #000000;
-    color: #FFFFFF;
-    border: 0px;
-    font-size: 20px;
+.alive, .dead {
     height: 50px;
     width: 50px;
     position: absolute;
+    transition: 0.5s;
+    border-radius: 1000px;
+    border: 0px;
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.05);
+    font-size: 20px;
+}
+
+.alive {
+    background-color: #000000;
+    color: #FFFFFF;
 }
 
 .dead {
-    transition: 0.5s;
-    border-radius: 1000px;
-    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.05);
     background-color: #FFFFFF;
     color: #000000;
-    border: 0px;
-    font-size: 20px;
-    height: 50px;
-    width: 50px;
-    position: absolute;
 }
 
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
-    .dead:hover {
+    .dead, .alive {
         cursor: pointer;
+    }
+    .dead:hover {
         background-color: #000000;
         color: #FFFFFF;
     }
     .living:hover {
-        cursor: pointer;
         background-color: #FFFFFF;
         color: #000000;
     }
