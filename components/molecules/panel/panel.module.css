@@ -1,7 +1,13 @@
 .panel {
-    height: 100%; 
-    width: 20vw; 
     display: flex; 
     align-items: center; 
     justify-content: center;
 }
+
+/* Tablet and Smaller Desktop */
+@media (min-width: 701px) {
+    .panel {
+        min-width: 20vw;
+    }
+  }
+  

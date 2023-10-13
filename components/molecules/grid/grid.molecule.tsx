@@ -36,8 +36,8 @@ const Grid = (props: Grid) => {
         key={`Cell's cubic coordinates: [q: ${q}, r: ${r}, s: ${s}]`}
         onClick={() => console.log('Cell:', cell)}
         style={{
-          left: x - 12.5, // to center cell from its origin
-          top: y - 12.5, // to center cell from its origin
+          left: x - 25, // to center cell from its origin
+          top: y - 25, // to center cell from its origin
         }}
         alive={alive}
       />
