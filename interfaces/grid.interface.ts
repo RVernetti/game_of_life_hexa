@@ -1,7 +1,7 @@
-import { ICubicCoordinates } from './coordinates.interface'
+import { Hex } from '@/helpers/hexagonal.helper';
 
 export interface ICell {
-    coordinates: ICubicCoordinates,
+    coordinates: Hex,
     alive?: boolean,
 }
 
