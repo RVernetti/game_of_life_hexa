@@ -7,8 +7,8 @@ import { ICell } from '@/interfaces/grid.interface'
 
 import { Cell } from '@/components/atoms'
 
-import { generateGrid } from '@/helpers/grid.helper'
-import { Point, Layout } from '@/helpers/hexagonal.helper'
+import { generateGrid } from '@/helpers/grid/grid.helper'
+import { Point, Layout } from '@/helpers/hex/hexagonal.helper'
 
 import styles from './grid.module.css'
 
