@@ -1,4 +1,4 @@
-import { IGrid } from '@/interfaces/grid.interface'
+import { ICell, IGrid } from '@/interfaces/grid.interface'
 import { Hex } from './hexagonal.helper'
 
 /**
@@ -20,4 +20,23 @@ const generateGrid = (radius: number) => {
     return grid
 }
 
-export { generateGrid }
+/**
+ * Gives the number of alive cells surrounding an original cell
+ * @param grid - The grid containing all cells
+ * @param cell - The original cell
+ * @returns {number} The number of alive cells around the original cell
+ */
+const getNeighborsCount = (grid: IGrid, cell: ICell) => {
+    const { coordinates } = cell
+    let count = 0
+    // We check all cells around original coordinates, exploring 6 directions
+    for (let i = 0; i < 6; ++i) {
+        // We check if the direction is pointing to an existing cell (watching border cells)
+        const neighbor = grid.find((cell) => cell.coordinates === coordinates.neighbor(i))
+        // If the neighbor cell exists in the grid and is alive, we increment the final count
+        if (neighbor?.alive) ++count
+    }
+    return count
+}
+
+export { generateGrid, getNeighborsCount }
