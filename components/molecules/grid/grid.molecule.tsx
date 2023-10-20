@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 
 import { ISquareCoordinates } from '@/interfaces/coordinates.interface'
 import { ICell, IGrid } from '@/interfaces/grid.interface'
@@ -10,10 +10,10 @@ import { Cell } from '@/components/atoms'
 import { generateGrid } from '@/helpers/grid/grid.helper'
 import { Point, Layout } from '@/helpers/hex/hexagonal.helper'
 
-import styles from './grid.module.css'
-
 import { useRecoilValue } from 'recoil'
-import { radiusState } from '@/states/atoms/grid.recoil'
+import { radiusState } from '@/stores/grid.store'
+
+import styles from './grid.module.css'
 
 interface Grid {
   origin?: ISquareCoordinates
@@ -25,10 +25,10 @@ const Grid = (props: Grid) => {
     origin = new Point(0, 0), 
     hexSize = new Point(29, 29),
   } = props
+
+  const [grid, setGrid] = useState(generateGrid(useRecoilValue(radiusState)))
   
   const layout = new Layout(Layout.flat, hexSize, origin)
-
-  const grid: IGrid = generateGrid(useRecoilValue(radiusState)) 
 
   const display = grid.map((cell: ICell) => {
     const { coordinates, alive } = cell
@@ -37,7 +37,7 @@ const Grid = (props: Grid) => {
     return (
       <Cell
         key={`Cell's cubic coordinates: [q: ${q}, r: ${r}, s: ${s}]`}
-        onClick={() => console.log('Cell:', cell)}
+        onClick={() => null}
         style={{
           left: x - 25, // to center cell from its origin
           top: y - 25, // to center cell from its origin
