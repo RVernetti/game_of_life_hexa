@@ -3,7 +3,7 @@
 import React from 'react'
 
 import { ISquareCoordinates } from '@/interfaces/coordinates.interface'
-import { ICell } from '@/interfaces/grid.interface'
+import { ICell, IGrid } from '@/interfaces/grid.interface'
 
 import { Cell } from '@/components/atoms'
 
@@ -12,22 +12,25 @@ import { Point, Layout } from '@/helpers/hex/hexagonal.helper'
 
 import styles from './grid.module.css'
 
+import { useRecoilValue } from 'recoil'
+import { radiusState } from '@/recoil/grid.recoil'
+
 interface Grid {
-  radius?: number
   origin?: ISquareCoordinates
   hexSize?: ISquareCoordinates
 }
 
 const Grid = (props: Grid) => {
   const {
-    radius = 6,
     origin = new Point(0, 0), 
     hexSize = new Point(29, 29),
   } = props
   
   const layout = new Layout(Layout.flat, hexSize, origin)
 
-  const display = generateGrid(radius).map((cell: ICell) => {
+  const grid: IGrid = generateGrid(useRecoilValue(radiusState)) 
+
+  const display = grid.map((cell: ICell) => {
     const { coordinates, alive } = cell
     const { q, r, s } = coordinates
     const { x, y } = layout.hexToPixel(coordinates)
