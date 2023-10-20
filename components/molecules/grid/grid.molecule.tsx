@@ -26,7 +26,9 @@ const Grid = (props: Grid) => {
     hexSize = new Point(29, 29),
   } = props
 
-  const [grid, setGrid] = useState(generateGrid(useRecoilValue(radiusState)))
+  const radius = useRecoilValue(radiusState)
+
+  const [grid, setGrid] = useState(generateGrid(radius))
   
   const layout = new Layout(Layout.flat, hexSize, origin)
 
