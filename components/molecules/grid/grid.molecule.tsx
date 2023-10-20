@@ -13,7 +13,7 @@ import { Point, Layout } from '@/helpers/hex/hexagonal.helper'
 import styles from './grid.module.css'
 
 import { useRecoilValue } from 'recoil'
-import { radiusState } from '@/recoil/grid.recoil'
+import { radiusState } from '@/states/atoms/grid.recoil'
 
 interface Grid {
   origin?: ISquareCoordinates
