@@ -39,4 +39,6 @@ const getNeighborsCount = (grid: IGrid, cell: ICell) => {
     return count
 }
 
-export { generateGrid, getNeighborsCount }
+const replaceClickedCell = (grid: IGrid, index: number, cellClicked: ICell) => [...grid.slice(0, index), cellClicked, ...grid.slice(index + 1)]
+
+export { generateGrid, getNeighborsCount, replaceClickedCell }
