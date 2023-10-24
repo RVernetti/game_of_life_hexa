@@ -3,11 +3,11 @@
 import React, { useState } from 'react'
 
 import { ISquareCoordinates } from '@/interfaces/coordinates.interface'
-import { ICell, IGrid } from '@/interfaces/grid.interface'
+import { ICell } from '@/interfaces/grid.interface'
 
 import { Cell } from '@/components/atoms'
 
-import { generateGrid } from '@/helpers/grid/grid.helper'
+import { generateGrid, replaceClickedCell } from '@/helpers/grid/grid.helper'
 import { Point, Layout } from '@/helpers/hex/hexagonal.helper'
 
 import { useRecoilValue } from 'recoil'
@@ -36,10 +36,14 @@ const Grid = (props: Grid) => {
     const { coordinates, alive } = cell
     const { q, r, s } = coordinates
     const { x, y } = layout.hexToPixel(coordinates)
+
+    const clickedCell = { ...cell, alive: !alive }
+    const handleClick = () => setGrid(replaceClickedCell(grid, clickedCell))
+
     return (
       <Cell
         key={`Cell's cubic coordinates: [q: ${q}, r: ${r}, s: ${s}]`}
-        onClick={() => null}
+        onClick={handleClick}
         style={{
           left: x - 25, // to center cell from its origin
           top: y - 25, // to center cell from its origin
