@@ -5,18 +5,16 @@
     transition: 0.5s;
     border-radius: 1000px;
     border: 0px;
-    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.05);
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.07);
     font-size: 20px;
 }
 
 .alive {
     background-color: #000000;
-    color: #FFFFFF;
 }
 
 .dead {
     background-color: #FFFFFF;
-    color: #000000;
 }
 
 /* Enable hover only on non-touch devices */
@@ -25,11 +23,9 @@
         cursor: pointer;
     }
     .dead:hover {
-        background-color: #000000;
-        color: #FFFFFF;
+        background-color: darkgrey;
     }
-    .living:hover {
-        background-color: #FFFFFF;
-        color: #000000;
+    .alive:hover {
+        background-color: lightgrey;
     }
 }
