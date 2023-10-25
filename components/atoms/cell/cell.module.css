@@ -23,10 +23,10 @@
         cursor: pointer;
     }
     .dead:hover {
-        background-color: darkgrey;
+        background-color: lightgrey;
     }
     .alive:hover {
-        background-color: lightgrey;
+        background-color: darkgrey;
     }
 }
 
