@@ -16,9 +16,8 @@ interface Cell {
 
 const Cell = (props: Cell) => {
     const { coordinates, children, style } = props
-    const { q, r, s } = coordinates
 
-    const [alive, setAlive] = useRecoilState(cellStateFamily({ q, r, s }))
+    const [alive, setAlive] = useRecoilState(cellStateFamily({ ...coordinates }))
 
     return (
         <button 

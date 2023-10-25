@@ -30,12 +30,11 @@ const Grid = (props: Grid) => {
   const layout = new Layout(Layout.flat, hexSize, origin)
 
   const display = grid.map((coordinates: Hex) => {
-    const { q, r, s } = coordinates
     const { x, y } = layout.hexToPixel(coordinates)
 
     return (
       <Cell
-        key={`[q: ${q}, r: ${r}, s: ${s}]`}
+        key={`${{...coordinates}}`}
         coordinates={coordinates}
         style={{
           left: x - 25, // to center cell from its origin
