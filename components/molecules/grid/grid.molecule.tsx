@@ -1,20 +1,19 @@
-'use client'
-
-import React, { useState } from 'react'
-
-import { ISquareCoordinates } from '@/interfaces/coordinates.interface'
-import { ICell } from '@/interfaces/grid.interface'
+import React from 'react'
 
 import { Cell } from '@/components/atoms'
 
-import { generateGrid, replaceClickedCell } from '@/helpers/grid/grid.helper'
-import { Point, Layout } from '@/helpers/hex/hexagonal.helper'
+import { generateGrid } from '@/helpers/grid/grid.helper'
+import { Point, Layout, Hex } from '@/helpers/hex/hexagonal.helper'
 
 import { useRecoilValue } from 'recoil'
 import { radiusState } from '@/stores/grid.store'
 
 import styles from './grid.module.css'
 
+interface ISquareCoordinates {
+  x: number,
+  y: number,
+}
 interface Grid {
   origin?: ISquareCoordinates
   hexSize?: ISquareCoordinates
@@ -27,28 +26,21 @@ const Grid = (props: Grid) => {
   } = props
 
   const radius = useRecoilValue(radiusState)
-
-  const [grid, setGrid] = useState(generateGrid(radius))
-  
+  const grid = generateGrid(radius)
   const layout = new Layout(Layout.flat, hexSize, origin)
 
-  const display = grid.map((cell: ICell) => {
-    const { coordinates, alive } = cell
+  const display = grid.map((coordinates: Hex) => {
     const { q, r, s } = coordinates
     const { x, y } = layout.hexToPixel(coordinates)
 
-    const clickedCell = { ...cell, alive: !alive }
-    const handleClick = () => setGrid(replaceClickedCell(grid, clickedCell))
-
     return (
       <Cell
-        key={`Cell's cubic coordinates: [q: ${q}, r: ${r}, s: ${s}]`}
-        onClick={handleClick}
+        key={`[q: ${q}, r: ${r}, s: ${s}]`}
+        coordinates={coordinates}
         style={{
           left: x - 25, // to center cell from its origin
           top: y - 25, // to center cell from its origin
         }}
-        alive={alive}
       />
     )
   })

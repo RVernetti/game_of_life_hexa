@@ -3,20 +3,27 @@
 import React from 'react'
 import styles from './cell.module.css'
 
+import { Hex } from '@/helpers/hex/hexagonal.helper'
+
+import { useRecoilState } from 'recoil'
+import { cellStateFamily } from '@/stores/cell.store'
+
 interface Cell {
-    onClick: React.MouseEventHandler<HTMLButtonElement>
+    coordinates: Hex
     children?: React.ReactNode
     style?: object
-    alive?: boolean
 }
 
 const Cell = (props: Cell) => {
-    const { onClick, children, style, alive } = props
+    const { coordinates, children, style } = props
+    const { q, r, s } = coordinates
+
+    const [alive, setAlive] = useRecoilState(cellStateFamily({ q, r, s }))
 
     return (
         <button 
             className={alive ? styles.alive : styles.dead} 
-            onClick={onClick}
+            onClick={() => setAlive(!alive)}
             style={style}
         >
             {children}

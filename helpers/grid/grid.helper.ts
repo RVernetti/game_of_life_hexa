@@ -1,5 +1,9 @@
-import { ICell, IGrid } from '@/interfaces/grid.interface'
 import { Hex } from '../hex/hexagonal.helper'
+
+import { useRecoilValue } from 'recoil'
+import { cellStateFamily } from '@/stores/cell.store'
+
+interface IGrid extends Array<Hex> {}
 
 /**
  * Generates a circular grid of hexagonal coordinates from a given radius
@@ -12,7 +16,7 @@ const generateGrid = (radius: number) => {
         for(let r = -radius; r <= radius; ++r){
             for(let s = -radius; s <= radius; ++s){
                 if (Math.round(q + r + s) === 0){
-                    grid.push({ coordinates: new Hex(q,r,s), alive: false })
+                    grid.push(new Hex(q,r,s))
                 }                    
             }
         }
@@ -20,28 +24,24 @@ const generateGrid = (radius: number) => {
     return grid
 }
 
-/**
- * Gives the number of alive cells surrounding an original cell
- * @param grid - The grid containing all cells
- * @param cell - The original cell
- * @returns {number} The number of alive cells around the original cell
- */
-const getNeighborsCount = (grid: IGrid, cell: ICell) => {
-    const { coordinates } = cell
-    let count = 0
-    // We check all cells around original coordinates, exploring 6 directions
-    for (let i = 0; i < 6; ++i) {
-        // We check if the direction is pointing to an existing cell (watching border cells)
-        const neighbor = grid.find((cell) => cell.coordinates === coordinates.neighbor(i))
-        // If the neighbor cell exists in the grid and is alive, we increment the final count
-        if (neighbor?.alive) ++count
-    }
-    return count
-}
+// /**
+//  * Gives the number of alive cells surrounding an original cell
+//  * @param grid - The grid containing all cells
+//  * @param cell - The original cell
+//  * @returns {number} The number of alive cells around the original cell
+//  */
+// const getNeighborsCount = (grid: IGrid, targetCoordinates: Hex) => {
+//     let count = 0
+//     // We check all cells around original coordinates, exploring 6 directions
+//     for (let i = 0; i < 6; ++i) {
+//         // We check if the direction is pointing to an existing cell (watching border cells)
+//         const neighbor = grid.find((coordinates: Hex) => coordinates === targetCoordinates.neighbor(i))
+//         // If the neighbor cell exists in the grid and is alive, we increment the final count
+//         const { q, r, s } = targetCoordinates
+//         const targetCellStatus = useRecoilValue(cellStateFamily({ q, r, s }))
+//         if (neighbor?.alive) ++count
+//     }
+//     return count
+// }
 
-const replaceClickedCell = (grid: IGrid, cellClicked: ICell) => {
-    const index = grid.findIndex((cell) => cell.coordinates === cellClicked.coordinates)
-    return [...grid.slice(0, index), cellClicked, ...grid.slice(index + 1)]
-}
-
-export { generateGrid, getNeighborsCount, replaceClickedCell }
+export { generateGrid }
