@@ -22,24 +22,25 @@ const generateGrid = (radius: number) => {
     return grid
 }
 
-// /**
-//  * Gives the number of alive cells surrounding an original cell
-//  * @param grid - The grid containing all cells
-//  * @param cell - The original cell
-//  * @returns {number} The number of alive cells around the original cell
-//  */
-// const getNeighborsCount = (grid: IGrid, targetCoordinates: Hex) => {
-//     let count = 0
-//     // We check all cells around original coordinates, exploring 6 directions
-//     for (let i = 0; i < 6; ++i) {
-//         // We check if the direction is pointing to an existing cell (watching border cells)
-//         const neighbor = grid.find((coordinates: Hex) => coordinates === targetCoordinates.neighbor(i))
-//         // If the neighbor cell exists in the grid and is alive, we increment the final count
-//         const { q, r, s } = targetCoordinates
-//         const targetCellStatus = useRecoilValue(cellStateFamily({ q, r, s }))
-//         if (neighbor?.alive) ++count
-//     }
-//     return count
-// }
+/**
+ * Gives number of living cells surrounding a designated cell
+ * @param grid - The grid containing all the coordinates of cells
+ * @param coordinates - The coordinates of the designated cell
+ * @returns {number} The number of living cells surrounding the designated cell
+ */
+const getAliveNeighborsCount = (grid: Array<Hex>, coordinates: Hex) => {
+    let count = 0
+    // We check all cells surrounding the designated cell, exploring all possible directions
+    for (let i = 0; i < 6; ++i) {
+        const neighbor = coordinates.neighbor(i)
+        // If the neighbor cell exists in the grid
+        if (grid.includes(neighbor)) {
+            const neighborIsAlive = useRecoilValue(cellStateFamily({ ...neighbor }))
+            // And if it is alive, we increment the final count
+            if(neighborIsAlive) ++count
+        }
+    }
+    return count
+}
 
-export { generateGrid }
+export { generateGrid, getAliveNeighborsCount }
