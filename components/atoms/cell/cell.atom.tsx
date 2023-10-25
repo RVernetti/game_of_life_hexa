@@ -25,6 +25,7 @@ const Cell = (props: Cell) => {
     } = props
 
     const [alive, setAlive] = useRecoilState(cellStateFamily({ ...coordinates }))
+    // TODO: cell's size should be manually adjustable from panel => recoil atom
 
     const origin = new Point(0, 0)
     const hexSize = new Point(size, size)
