@@ -3,21 +3,19 @@ import { Hex } from '../hex/hexagonal.helper'
 import { useRecoilValue } from 'recoil'
 import { cellStateFamily } from '@/stores/cell.store'
 
-interface IGrid extends Array<Hex> {}
-
 /**
  * Generates a circular grid of hexagonal coordinates from a given radius
  * @param radius - The grid radius from the origin [0,0,0] to the border
  * @returns {array} The circular grid of hexagonal coordinates
  */
 const generateGrid = (radius: number) => {
-    let grid: IGrid = []
+    let grid: Array<Hex> = []
     for(let q = -radius; q <= radius; ++q){
         for(let r = -radius; r <= radius; ++r){
             for(let s = -radius; s <= radius; ++s){
                 if (Math.round(q + r + s) === 0){
-                    grid.push(new Hex(q,r,s))
-                }                    
+                    grid.push(new Hex(q, r, s))
+                }
             }
         }
     }
