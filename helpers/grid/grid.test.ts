@@ -1,5 +1,5 @@
 import { describe } from 'node:test'
-import { generateGrid, getNeighborsCount } from './grid.helper'
+import { generateGrid } from './grid.helper'
 
 describe('generateGrid', () => {
     
