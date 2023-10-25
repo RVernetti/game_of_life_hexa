@@ -29,3 +29,10 @@
         background-color: lightgrey;
     }
 }
+
+@media (prefers-color-scheme: dark) {
+    .alive, .dead {
+        box-shadow: 2px 2px 12px rgba(255, 255, 255, 0.3);
+    }
+  }
+  
