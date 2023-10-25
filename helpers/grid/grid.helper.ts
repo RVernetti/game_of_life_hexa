@@ -23,17 +23,17 @@ const generateGrid = (radius: number) => {
 }
 
 /**
- * Gives number of living cells surrounding a designated cell
+ * Gives the number of living neighboring cells
  * @param grid - The grid containing all the coordinates of cells
- * @param coordinates - The coordinates of the designated cell
- * @returns {number} The number of living cells surrounding the designated cell
+ * @param coordinates - The coordinates of a given cell
+ * @returns {number} The number of living neighboring cells
  */
 const getLivingNeighborsCount = (grid: Array<Hex>, coordinates: Hex) => {
     let count = 0
-    // We check all cells surrounding the designated cell, exploring all possible directions
+    // We check all cells surrounding the given cell, exploring all possible directions
     for (let i = 0; i < 6; ++i) {
         const neighbor = coordinates.neighbor(i)
-        // If the neighbor cell exists in the grid
+        // If the neighboring cell exists in the grid
         if (grid.includes(neighbor)) {
             const neighborIsAlive = useRecoilValue(cellStateFamily({ ...neighbor }))
             // And if it is alive, we increment the final count
