@@ -1,10 +1,10 @@
 import { describe } from 'node:test'
-import { generateGrid } from './grid.helper'
+import { generateGrid, getLivingNeighborsCount } from './grid.helper'
 
 describe('generateGrid', () => {
     
 })
 
-describe('getNeighborsCount', () => {
+describe('getLivingNeighborsCount', () => {
 
 })

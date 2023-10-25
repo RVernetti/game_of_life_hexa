@@ -31,7 +31,6 @@ const Grid = (props: Grid) => {
 
   const display = grid.map((coordinates: Hex) => {
     const { x, y } = layout.hexToPixel(coordinates)
-
     return (
       <Cell
         key={`${{...coordinates}}`}
