@@ -39,7 +39,7 @@ const Panel = () => {
         title="Cell's radius:"
         onChange={handleCellRadiusChange}
         min='10'
-        max='100'
+        max='99'
         defaultValue={cellRadius}
       />
 
