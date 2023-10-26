@@ -12,11 +12,12 @@ import styles from './grid.module.css'
 import { gameRunningState, gameSpeedState } from '@/stores/game.store'
 
 const Grid = () => {
-  const gameSpeed = useRecoilValue(gameSpeedState)
-  const running = useRecoilValue(gameRunningState)
+  const running: boolean = useRecoilValue(gameRunningState)
+  const gameSpeed: number = useRecoilValue(gameSpeedState)
+  const radius: number = useRecoilValue(gridRadiusState)
+  const grid: Array<Hex> = generateGrid(radius)
 
-  const radius = useRecoilValue(gridRadiusState)
-  const grid = generateGrid(radius)
+  // Cell's display
   const display = grid.map((coordinates: Hex) => {
     const {q, r, s} = coordinates
     return (
@@ -27,6 +28,7 @@ const Grid = () => {
     )
   })
 
+  // Game loop
   useEffect(() => {
     const delay: number = Math.round(1000 / gameSpeed)
     let gameInterval: ReturnType<typeof setInterval> = setInterval(
@@ -34,6 +36,7 @@ const Grid = () => {
       delay
     )
     if (!running) clearInterval(gameInterval)
+    // On unmount we clear the interval
     return () => clearInterval(gameInterval)
   }, [running])
 
