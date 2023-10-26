@@ -1,7 +1,7 @@
 import { Hex } from '../hex/hexagonal.helper'
 
 import { useRecoilValue } from 'recoil'
-import { cellStateFamily } from '@/stores/cell.store'
+import { livingCellStateFamily } from '@/stores/cell.store'
 
 /**
  * Generates a circular grid of hexagonal coordinates from a given radius
@@ -35,7 +35,7 @@ const getLivingNeighborsCount = (grid: Array<Hex>, coordinates: Hex) => {
         const neighbor = coordinates.neighbor(i)
         // If the neighboring cell exists in the grid
         if (grid.includes(neighbor)) {
-            const neighborIsAlive = useRecoilValue(cellStateFamily({ ...neighbor }))
+            const neighborIsAlive = useRecoilValue(livingCellStateFamily({ ...neighbor }))
             // And if it is alive, we increment the final count
             if(neighborIsAlive) ++count
         }

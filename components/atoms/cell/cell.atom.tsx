@@ -5,7 +5,7 @@ import React from 'react'
 import { Point, Layout, Hex } from '@/helpers/hex/hexagonal.helper'
 
 import { useRecoilValue, useRecoilState } from 'recoil'
-import { cellRadiusState, cellStateFamily } from '@/stores/cell.store'
+import { cellRadiusState, livingCellStateFamily } from '@/stores/cell.store'
 
 import styles from './cell.module.css'
 
@@ -22,7 +22,7 @@ const Cell = (props: Cell) => {
         children,
     } = props
 
-    const [alive, setAlive] = useRecoilState(cellStateFamily({ ...coordinates }))
+    const [alive, setAlive] = useRecoilState(livingCellStateFamily({ ...coordinates }))
 
     const cellRadius = useRecoilValue(cellRadiusState)
     const hexDimentions = new Point(cellRadius, cellRadius)

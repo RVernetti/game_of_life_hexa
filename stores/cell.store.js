@@ -5,8 +5,8 @@ export const cellRadiusState = atom({
     default: 20,
 })
 
-// The cell status (dead or alive)
-export const cellStateFamily = atomFamily({
-    key: 'cell-state-family', // unique ID (with respect to other atoms/selectors)
+// The cell state (dead or alive)
+export const livingCellStateFamily = atomFamily({
+    key: 'living-cell-state-family', // unique ID (with respect to other atoms/selectors)
     default: false, // alive or dead cell, not alive by default
 })
