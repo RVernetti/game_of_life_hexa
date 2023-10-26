@@ -3,16 +3,17 @@
     transition: 0.5s;
     border-radius: 1000px;
     border: 0px;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
     font-size: 20px;
 }
 
 .alive {
     background-color: #000000;
+    box-shadow: inset 2px 2px 3px 1px rgba(255, 255, 255, 0.3);
 }
 
 .dead {
     background-color: #FFFFFF;
+    box-shadow: inset 2px 2px 3px 1px rgba(0, 0, 0, 0.1);
 }
 
 /* Enable hover only on non-touch devices */
@@ -25,11 +26,5 @@
     }
     .alive:hover {
         background-color: darkgrey;
-    }
-}
-
-@media (prefers-color-scheme: dark) {
-    .alive, .dead {
-        box-shadow: 4px 4px 4px rgba(255, 255, 255, 0.3);
     }
 }
