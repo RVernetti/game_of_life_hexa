@@ -28,7 +28,7 @@ const generateGrid = (radius: number) => {
  * @param coordinates - The coordinates of a given cell
  * @returns {number} The number of living neighboring cells
  */
-const getLivingNeighborsCount = (grid: Array<Hex>, coordinates: Hex) => {
+const getNumberOfLivingNeighboringCells = (grid: Array<Hex>, coordinates: Hex) => {
     let count = 0
     // We check all cells surrounding the given cell, exploring all possible directions
     for (let i = 0; i < 6; ++i) {
@@ -43,4 +43,4 @@ const getLivingNeighborsCount = (grid: Array<Hex>, coordinates: Hex) => {
     return count
 }
 
-export { generateGrid, getLivingNeighborsCount }
+export { generateGrid, getNumberOfLivingNeighboringCells }
