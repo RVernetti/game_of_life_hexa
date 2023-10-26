@@ -5,7 +5,8 @@ import { RecoilRoot } from 'recoil'
 
 import styles from './page.module.css'
 
-import { Grid, Panel } from '@/components/molecules'
+import { Grid } from '@/components/molecules'
+import { Panel } from '@/components/organisms'
 
 const HomePage = () => (
   <RecoilRoot>
