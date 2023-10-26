@@ -6,10 +6,10 @@ import styles from './panel.module.css'
 import { Button } from '@/components/atoms'
 
 import { useRecoilState } from 'recoil'
-import { runningState } from '@/stores/game.store'
+import { gameRunningState } from '@/stores/game.store'
 
 const Panel = () => {
-  const [running, setRunning] = useRecoilState(runningState)
+  const [running, setRunning] = useRecoilState(gameRunningState)
   
   return (
     <div className={styles.panel}>
