@@ -38,7 +38,7 @@ const Grid = () => {
     if (!running) clearInterval(gameInterval)
     // On unmount we clear the interval
     return () => clearInterval(gameInterval)
-  }, [running])
+  }, [running, gameSpeed])
 
   return (
     <div className={styles.grid}>
