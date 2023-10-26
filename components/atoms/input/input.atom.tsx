@@ -7,8 +7,8 @@ import styles from './input.module.css'
 interface Input {
     onChange: React.ChangeEventHandler<HTMLInputElement>
     type?: string
-    min?: number
-    max?: number
+    min?: string
+    max?: string
     defaultValue?: number
     title?: string
     style?: object
@@ -18,7 +18,7 @@ const Input = (props: Input) => {
     const { 
         onChange, 
         type = 'number', 
-        min = 0, 
+        min, 
         max, 
         defaultValue, 
         title, 
