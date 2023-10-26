@@ -6,6 +6,7 @@ import styles from './input.module.css'
 
 interface Input {
     onChange: React.ChangeEventHandler<HTMLInputElement>
+    id: string
     type?: string
     min?: string
     max?: string
@@ -16,7 +17,8 @@ interface Input {
 
 const Input = (props: Input) => {
     const { 
-        onChange, 
+        onChange,
+        id,
         type = 'number', 
         min, 
         max, 
@@ -29,6 +31,7 @@ const Input = (props: Input) => {
         <div className={styles.layout}>
             <span className={styles.title}>{title}</span>
             <input
+                id={id}
                 className={styles.input} 
                 type={type}
                 min={min}

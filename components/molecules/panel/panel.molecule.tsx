@@ -28,14 +28,16 @@ const Panel = () => {
   
   return (
     <div className={styles.panel}>
-      <Input 
+      <Input
+        id='grid-radius-input'
         title='Grid radius:'
         onChange={handleGridRadiusChange}
         min='0'
         max='40'
         defaultValue={gridRadius}
       />
-      <Input 
+      <Input
+        id="cell's-radius-input"
         title="Cell's radius:"
         onChange={handleCellRadiusChange}
         min='10'
