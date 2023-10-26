@@ -18,3 +18,9 @@
     font-size: 20px;
     border: 0px;
 }
+
+@media (prefers-color-scheme: dark) {
+    .title {
+        color: #FFFFFF;
+    }
+}
