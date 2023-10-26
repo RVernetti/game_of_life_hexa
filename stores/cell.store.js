@@ -1,7 +1,7 @@
 import { atom, atomFamily } from 'recoil'
 
-export const cellSizeState = atom({
-    key: 'cell-size-state',
+export const cellRadiusState = atom({
+    key: 'cell-radius-state',
     default: 20,
 })
 
