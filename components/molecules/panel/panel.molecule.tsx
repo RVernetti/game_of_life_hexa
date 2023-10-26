@@ -1,19 +1,21 @@
 'use client'
 
 import React from 'react'
-import styles from './panel.module.css'
+
+import { useRecoilState } from 'recoil'
+import { gridRadiusState } from '@/stores/grid.store'
+import { cellRadiusState } from '@/stores/cell.store'
+import { gameRunningState, gameSpeedState } from '@/stores/game.store'
 
 import { Button, Input } from '@/components/atoms'
 
-import { useRecoilState } from 'recoil'
-import { gameRunningState } from '@/stores/game.store'
-import { gridRadiusState } from '@/stores/grid.store'
-import { cellRadiusState } from '@/stores/cell.store'
+import styles from './panel.module.css'
 
 const Panel = () => {
-  const [running, setRunning] = useRecoilState(gameRunningState)
   const [gridRadius, setGridRadius] = useRecoilState(gridRadiusState)
   const [cellRadius, setCellRadius] = useRecoilState(cellRadiusState)
+  const [speed, setSpeed] = useRecoilState(gameSpeedState)
+  const [running, setRunning] = useRecoilState(gameRunningState)
 
   const handleGridRadiusChange = (e: React.FormEvent<HTMLInputElement>) => {
     const radius = parseInt((e.target as HTMLInputElement).value) || 0
@@ -25,7 +27,11 @@ const Panel = () => {
     return setCellRadius(radius)
   }
 
-  
+  const handleGameSpeedChange = (e: React.FormEvent<HTMLInputElement>) => {
+    const speed = parseInt((e.target as HTMLInputElement).value) || 20
+    return setSpeed(speed)
+  }
+
   return (
     <div className={styles.panel}>
       <Input
@@ -44,7 +50,14 @@ const Panel = () => {
         max='99'
         defaultValue={cellRadius}
       />
-
+      <Input
+        id="game-speed-input"
+        title="Game speed:"
+        onChange={handleGameSpeedChange}
+        min='1'
+        max='10'
+        defaultValue={speed}
+      />
       <Button onClick={() => setRunning(!running)}>
         {running ? 'Stop' : 'Play'}
       </Button>
