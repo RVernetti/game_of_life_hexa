@@ -1,0 +1,20 @@
+.layout {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.title {
+    color: #000000;
+    font-size: 20px;
+}
+
+.input {
+    border-radius: 12px;
+    padding: 5px 10px;
+    box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.2);
+    background-color: #FFFFFF;
+    color: #000000;
+    font-size: 20px;
+    border: 0px;
+}
