@@ -12,7 +12,7 @@ const CellsRadiusInput = () => {
   const [cellRadius, setCellRadius] = useRecoilState(cellRadiusState)
 
   const handleCellRadiusChange = (e: React.FormEvent<HTMLInputElement>) => {
-    const radius = parseInt((e.target as HTMLInputElement).value) || 20
+    const radius: number = parseInt((e.target as HTMLInputElement).value) || 20
     return setCellRadius(radius)
   }
 

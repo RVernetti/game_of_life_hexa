@@ -12,7 +12,7 @@ const GridRadiusInput = () => {
   const [gridRadius, setGridRadius] = useRecoilState(gridRadiusState)
 
   const handleGridRadiusChange = (e: React.FormEvent<HTMLInputElement>) => {
-    const radius = parseInt((e.target as HTMLInputElement).value) || 0
+    const radius: number = parseInt((e.target as HTMLInputElement).value) || 0
     return setGridRadius(radius)
   }
 
