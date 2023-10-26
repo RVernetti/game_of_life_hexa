@@ -1,6 +1,4 @@
 .alive, .dead {
-    height: 50px;
-    width: 50px;
     position: absolute;
     transition: 0.5s;
     border-radius: 1000px;

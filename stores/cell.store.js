@@ -1,4 +1,9 @@
-import { atomFamily } from 'recoil'
+import { atom, atomFamily } from 'recoil'
+
+export const cellSizeState = atom({
+    key: 'cell-size-state',
+    default: 20,
+})
 
 // The cell status (dead or alive)
 export const cellStateFamily = atomFamily({
