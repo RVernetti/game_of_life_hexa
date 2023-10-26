@@ -25,10 +25,15 @@ const Cell = (props: Cell) => {
     const [alive, setAlive] = useRecoilState(livingCellStateFamily({ ...coordinates }))
 
     const cellRadius = useRecoilValue(cellRadiusState)
+    // We calculate the layout of cells according to their radius
     const hexDimentions = new Point(cellRadius, cellRadius)
     const origin = new Point(0, 0)
     const layout = new Layout(Layout.flat, hexDimentions, origin)
+    // We calculate the ratio between the size of the cell and its radius 
+    // to be able to adjust it manually
     const cellSize = cellRadius * Math.sqrt(3)
+    // We convert the cubic coordinates of the cell into square coordinates 
+    // to be able to display it on the screen
     const {x, y} = layout.hexToPixel(coordinates)
 
     return (
@@ -38,8 +43,8 @@ const Cell = (props: Cell) => {
             style={{
                 height: cellSize,
                 width: cellSize,           
-                left: x - (cellSize / 2), // to recenter cell
-                top: y - (cellSize / 2), // to recenter cell
+                left: x - (cellSize / 2), // to center the cell
+                top: y - (cellSize / 2), // to center the cell
                 ...style,
             }}
         >
