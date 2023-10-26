@@ -5,6 +5,7 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    border-radius: 20px;
 }
 
 .layout {
