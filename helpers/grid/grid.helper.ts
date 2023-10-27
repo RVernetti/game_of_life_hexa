@@ -1,6 +1,6 @@
 import { Hex } from '../hex/hexagonal.helper'
 
-import { useRecoilValue } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import { livingCellStateFamily } from '@/stores/cell.store'
 
 /**
@@ -43,4 +43,21 @@ const getNumberOfLivingNeighboringCells = (grid: Array<Hex>, coordinates: Hex) =
     return count
 }
 
-export { generateGrid, getNumberOfLivingNeighboringCells }
+/**
+ * The rules of the game concerning the fate of a cell
+ * @param grid - The grid containing all the coordinates of cells
+ * @param coordinates - The coordinates of a given cell
+ */
+const applyRulesToCell = (grid: Array<Hex>, coordinates: Hex) => {
+    const [alive, setAlive] = useRecoilState(livingCellStateFamily({ ...coordinates }))
+    // We count the number of living neighboring cells
+    const livingNeighborsNumber = getNumberOfLivingNeighboringCells(grid, coordinates)
+    // If the cell is alive this turn
+    if (alive) {
+        // If living neighboring cells are not enough, she dies
+        if (livingNeighborsNumber < 2) setAlive(false)
+        // If she's dead this turn, and living neighboring cells are enough, she's borning
+    } else if (livingNeighborsNumber === 3) setAlive(true)
+}
+
+export { generateGrid, getNumberOfLivingNeighboringCells, applyRulesToCell }
