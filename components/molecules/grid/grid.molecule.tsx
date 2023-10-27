@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
-import { useRecoilValue } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import { gridRadiusState } from '@/stores/grid.store'
+import { livingCellStateFamily } from '@/stores/cell.store'
+
 
 import { generateGrid } from '@/helpers/grid/grid.helper'
 import { Hex } from '@/helpers/hex/hexagonal.helper'
@@ -12,33 +14,20 @@ import styles from './grid.module.css'
 import { gameRunningState, gameSpeedState } from '@/stores/game.store'
 
 const Grid = () => {
-  const running: boolean = useRecoilValue(gameRunningState)
-  const gameSpeed: number = useRecoilValue(gameSpeedState)
   const radius: number = useRecoilValue(gridRadiusState)
   const grid: Array<Hex> = generateGrid(radius)
 
-  // Cell's display
+  // Cells' display
   const display = grid.map((coordinates: Hex) => {
     const {q, r, s} = coordinates
     return (
       <Cell
         key={`[q: ${q}, r: ${r}, s: ${s}]`}
         coordinates={coordinates}
+        grid={grid}
       />
     )
   })
-
-  // Game loop
-  useEffect(() => {
-    const delay: number = Math.round(1000 / gameSpeed)
-    let gameInterval: ReturnType<typeof setInterval> = setInterval(
-      () => console.log('Another one!'),
-      delay
-    )
-    if (!running) clearInterval(gameInterval)
-    // On unmount we clear the interval
-    return () => clearInterval(gameInterval)
-  }, [running, gameSpeed])
 
   return (
     <div className={styles.grid}>
