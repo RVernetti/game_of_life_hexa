@@ -52,8 +52,9 @@ const Cell = (props: Cell) => {
         // We check all cells surrounding the given cell, exploring all possible directions
         for (let i = 0; i < 6; ++i) {
             const neighbor = coordinates.neighbor(i)
+            const isInTheGrid = grid.some((coordinates: Hex) => JSON.stringify(coordinates) === JSON.stringify(neighbor))
             // If the neighboring cell exists in the grid
-            if (grid.includes(neighbor)) {
+            if (isInTheGrid) {
                 const neighborIsAlive = useRecoilValue(livingCellStateFamily({ ...neighbor }))
                 // And if it is alive, we increment the final count
                 if(neighborIsAlive) ++count
