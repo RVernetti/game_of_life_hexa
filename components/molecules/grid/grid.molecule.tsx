@@ -1,32 +1,43 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { useRecoilState, useRecoilValue } from 'recoil'
-import { gridRadiusState } from '@/stores/grid.store'
-import { livingCellStateFamily } from '@/stores/cell.store'
+import { gridState } from '@/stores/grid.store'
+import { gameRunningState, gameSpeedState } from '@/stores/game.store'
 
-
-import { generateGrid } from '@/helpers/grid/grid.helper'
 import { Hex } from '@/helpers/hex/hexagonal.helper'
 
 import { Cell } from '@/components/atoms'
 
+import { ICell } from '@/interfaces/grid.interface'
+
 import styles from './grid.module.css'
-import { gameRunningState, gameSpeedState } from '@/stores/game.store'
-import { ICell, IGrid } from '@/interfaces/grid.interface'
 
 const Grid = () => {
-  const radius: number = useRecoilValue(gridRadiusState)
-  const grid: IGrid = generateGrid(radius)
+
+  const [grid, setGrid] = useRecoilState(gridState)
+  const running: boolean = useRecoilValue(gameRunningState)
+  const gameSpeed: number = useRecoilValue(gameSpeedState)
+
+  // Game loop
+  useEffect(() => {
+      const delay: number = Math.round(1000 / gameSpeed)
+      let gameInterval: ReturnType<typeof setInterval> = setInterval(
+      () => console.log('One more turn'),
+      delay
+      )
+      if (!running) clearInterval(gameInterval)
+      // On unmount we clear the interval
+      return () => clearInterval(gameInterval)
+  }, [running, gameSpeed])
+
 
   // Cells' display
   const display = grid.map((cell: ICell) => {
-    const { coordinates } = cell
-    const { q, r, s } = coordinates
+    const { coordinates: { q, r, s } } = cell
     return (
       <Cell
         key={`[q: ${q}, r: ${r}, s: ${s}]`}
-        coordinates={coordinates}
-        grid={grid}
+        cell={cell}
       />
     )
   })

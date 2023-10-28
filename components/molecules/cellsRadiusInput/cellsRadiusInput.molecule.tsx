@@ -3,7 +3,7 @@
 import React from 'react'
 
 import { useRecoilState } from 'recoil'
-import { cellRadiusState } from '@/stores/cell.store'
+import { cellRadiusState } from '@/stores/grid.store'
 
 import { Input, Title } from '@/components/atoms'
 
