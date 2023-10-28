@@ -8,5 +8,5 @@ export const gameRunningState = atom({
 
 export const gameSpeedState = atom({
     key: 'game-speed-state',
-    default: 1,
+    default: 10,
 })
