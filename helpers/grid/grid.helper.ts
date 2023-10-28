@@ -27,42 +27,39 @@ const getNewGridOnCellClick = (grid: IGrid, clickedCell: ICell) => {
     return [...grid.slice(0, index), newCell, ...grid.slice(index + 1)]
 }
 
-    // /**
-    //  * Gives the number of living neighboring cells
-    //  * @param grid - The grid containing all the coordinates of cells
-    //  * @param coordinates - The coordinates of a given cell
-    //  * @returns {number} The number of living neighboring cells
-    //  */
-    // const getNumberOfLivingNeighboringCells = (grid: IGrid, coordinates: Hex) => {
-    //     let count = 0
-    //     // We check all cells surrounding the given cell, exploring all possible directions
-    //     for (let i = 0; i < 6; ++i) {
-    //         const neighbor = coordinates.neighbor(i)
-    //         const isInTheGrid = grid.some((cell: ICell) => JSON.stringify(cell.coordinates) === JSON.stringify(neighbor))
-    //         // If the neighboring cell exists in the grid
-    //         if (isInTheGrid) {
-    //             const neighborIsAlive = useRecoilValue(livingCellStateFamily({ ...neighbor }))
-    //             // And if it is alive, we increment the final count
-    //             if(neighborIsAlive) ++count
-    //         }
-    //     }
-    //     return count
-    // }
+    /**
+     * Gives the number of living neighboring cells
+     * @param grid - The grid containing all the coordinates of cells
+     * @param coordinates - The coordinates of a given cell
+     * @returns {number} The number of living neighboring cells
+     */
+    const getNumberOfLivingNeighboringCells = (grid: IGrid, coordinates: Hex) => {
+        let count = 0
+        // We check all cells surrounding the given cell, exploring all possible directions
+        for (let i = 0; i < 6; ++i) {
+            const neighborCoordinates = coordinates.neighbor(i)
+            const neighbor = grid.find((cell: ICell) => JSON.stringify(cell.coordinates) === JSON.stringify(neighborCoordinates))
+            // If the neighboring cell exists in the grid and is alive, we increment the count
+            if (neighbor?.alive) ++count
+        }
+        return count
+    }
 
-    // /**
-    //  * The rules of the game concerning the fate of a cell
-    //  * @param grid - The grid containing all the coordinates of cells
-    //  * @param coordinates - The coordinates of a given cell
-    //  */
-    // const applyRulesToCell = (grid: IGrid, coordinates: Hex) => {
-    //     // We count the number of living neighboring cells
-    //     const livingNeighborsNumber = getNumberOfLivingNeighboringCells(grid, coordinates)
-    //     // If the cell is alive this turn
-    //     if (alive) {
-    //         // If living neighboring cells are not enough, she dies
-    //         if (livingNeighborsNumber < 2) setAlive(false)
-    //         // If she's dead this turn, and living neighboring cells are enough, she's borning
-    //     } else if (livingNeighborsNumber === 3) setAlive(true)
-    // }
+    /**
+     * The rules of the game concerning the fate of a cell
+     * @param grid - The grid containing all the coordinates of cells
+     * @param coordinates - The coordinates of a given cell
+     */
+    const getNextGrid = (grid: IGrid, cell: ICell) => {
+        const { coordinates, alive } = cell
+        // We count the number of living neighboring cells
+        const livingNeighborsNumber = getNumberOfLivingNeighboringCells(grid, coordinates)
+        // If the cell is alive this turn
+        if (alive) {
+            // If living neighboring cells are not enough, she dies
+            if (livingNeighborsNumber < 2) return getNewGridOnCellClick(grid, cell)
+            // If she's dead this turn, and living neighboring cells are enough, she's borning
+        } else if (livingNeighborsNumber === 3) return getNewGridOnCellClick(grid, cell)
+    }
 
-export { generateGrid, getNewGridOnCellClick }
+export { generateGrid, getNewGridOnCellClick, getNextGrid }
