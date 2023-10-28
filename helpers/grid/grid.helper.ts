@@ -1,3 +1,4 @@
+import { IGrid } from '@/interfaces/grid.interface'
 import { Hex } from '../hex/hexagonal.helper'
 
 /**
@@ -6,12 +7,12 @@ import { Hex } from '../hex/hexagonal.helper'
  * @returns {array} The circular grid of hexagonal coordinates
  */
 const generateGrid = (radius: number) => {
-    let grid: Array<Hex> = []
+    let grid: IGrid = []
     for(let q = -radius; q <= radius; ++q){
         for(let r = -radius; r <= radius; ++r){
             for(let s = -radius; s <= radius; ++s){
                 if (Math.round(q + r + s) === 0){
-                    grid.push(new Hex(q, r, s))
+                    grid.push({ coordinates: new Hex(q, r, s), alive: false })
                 }
             }
         }

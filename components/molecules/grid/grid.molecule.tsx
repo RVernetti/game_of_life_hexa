@@ -12,14 +12,16 @@ import { Cell } from '@/components/atoms'
 
 import styles from './grid.module.css'
 import { gameRunningState, gameSpeedState } from '@/stores/game.store'
+import { ICell, IGrid } from '@/interfaces/grid.interface'
 
 const Grid = () => {
   const radius: number = useRecoilValue(gridRadiusState)
-  const grid: Array<Hex> = generateGrid(radius)
+  const grid: IGrid = generateGrid(radius)
 
   // Cells' display
-  const display = grid.map((coordinates: Hex) => {
-    const {q, r, s} = coordinates
+  const display = grid.map((cell: ICell) => {
+    const { coordinates } = cell
+    const { q, r, s } = coordinates
     return (
       <Cell
         key={`[q: ${q}, r: ${r}, s: ${s}]`}

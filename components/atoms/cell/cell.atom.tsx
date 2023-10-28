@@ -9,10 +9,11 @@ import { cellRadiusState, livingCellStateFamily } from '@/stores/cell.store'
 import { gameRunningState, gameSpeedState } from '@/stores/game.store'
 
 import styles from './cell.module.css'
+import { ICell, IGrid } from '@/interfaces/grid.interface'
 
 interface Cell {
     coordinates: Hex
-    grid: Array<Hex>
+    grid: IGrid
     style?: object
     children?: React.ReactNode
 }
@@ -39,7 +40,7 @@ const Cell = (props: Cell) => {
     const cellSize = cellRadius * Math.sqrt(3)
     // We convert the cubic coordinates of the cell into square coordinates 
     // to be able to display it on the screen
-    const {x, y} = layout.hexToPixel(coordinates)
+    const { x, y } = layout.hexToPixel(coordinates)
 
     /**
      * Gives the number of living neighboring cells
@@ -47,12 +48,12 @@ const Cell = (props: Cell) => {
      * @param coordinates - The coordinates of a given cell
      * @returns {number} The number of living neighboring cells
      */
-    const getNumberOfLivingNeighboringCells = (grid: Array<Hex>, coordinates: Hex) => {
+    const getNumberOfLivingNeighboringCells = (grid: IGrid, coordinates: Hex) => {
         let count = 0
         // We check all cells surrounding the given cell, exploring all possible directions
         for (let i = 0; i < 6; ++i) {
             const neighbor = coordinates.neighbor(i)
-            const isInTheGrid = grid.some((coordinates: Hex) => JSON.stringify(coordinates) === JSON.stringify(neighbor))
+            const isInTheGrid = grid.some((cell: ICell) => JSON.stringify(cell.coordinates) === JSON.stringify(neighbor))
             // If the neighboring cell exists in the grid
             if (isInTheGrid) {
                 const neighborIsAlive = useRecoilValue(livingCellStateFamily({ ...neighbor }))
@@ -68,7 +69,7 @@ const Cell = (props: Cell) => {
      * @param grid - The grid containing all the coordinates of cells
      * @param coordinates - The coordinates of a given cell
      */
-    const applyRulesToCell = (grid: Array<Hex>, coordinates: Hex) => {
+    const applyRulesToCell = (grid: IGrid, coordinates: Hex) => {
         // We count the number of living neighboring cells
         const livingNeighborsNumber = getNumberOfLivingNeighboringCells(grid, coordinates)
         // If the cell is alive this turn

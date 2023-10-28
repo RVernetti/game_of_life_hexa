@@ -8,7 +8,7 @@ interface Title {
 }
 
 const Title = (props: Title) => {
-    const {title, children} = props
+    const { title, children } = props
 
     return (
         <div className={styles.layout}>
