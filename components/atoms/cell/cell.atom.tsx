@@ -11,6 +11,7 @@ import { Point, Layout } from '@/helpers/hex/hexagonal.helper'
 import { getNewGridOnCellClick } from '@/helpers/grid/grid.helper'
 
 import styles from './cell.module.css'
+import { gameRunningState } from '@/stores/game.store'
 
 interface Cell {
     cell: ICell
@@ -28,6 +29,7 @@ const Cell = (props: Cell) => {
     const { coordinates, alive } = cell
 
     const [grid, setGrid] = useRecoilState(gridState)
+    const [running, setRunning] = useRecoilState(gameRunningState)
 
     // Cell's dimensions and position:
     const cellRadius = useRecoilValue(cellRadiusState)
@@ -43,6 +45,7 @@ const Cell = (props: Cell) => {
     const { x, y } = layout.hexToPixel(coordinates)
 
     const handleClick = () => {
+        setRunning(false)
         const newGrid: IGrid = getNewGridOnCellClick(grid, cell)
         setGrid(newGrid)
     }
