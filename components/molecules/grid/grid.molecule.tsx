@@ -20,19 +20,19 @@ const Grid = () => {
 
   // Game loop
   useEffect(() => {
-      const delay: number = Math.round(1000 / gameSpeed)
-      let gameInterval: ReturnType<typeof setInterval> = setInterval(
+    const delay: number = Math.round(1000 / gameSpeed)
+    let gameInterval: ReturnType<typeof setInterval> = setInterval(
       () => {
         const newGrid = grid.map((cell: ICell) => getNewCellBasedOnRules(grid, cell))
         setGrid(newGrid)
       },
       delay
-      )
-      if (!running) clearInterval(gameInterval)
-      // On unmount we clear the interval
-      return () => clearInterval(gameInterval)
+    )
+    // If we click on 'Stop' button, we clear the interval to stop the game
+    if (!running) clearInterval(gameInterval)
+    // On unmount we clear the interval
+    return () => clearInterval(gameInterval)
   }, [running, gameSpeed])
-
 
   // Cells' display
   const display = grid.map((cell: ICell) => {
