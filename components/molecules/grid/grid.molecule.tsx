@@ -15,7 +15,7 @@ import styles from './grid.module.css'
 const Grid = () => {
 
   const [grid, setGrid] = useRecoilState(gridState)
-  const running: boolean = useRecoilValue(gameRunningState)
+  const [running, setRunning] = useRecoilState(gameRunningState)
   const gameSpeed: number = useRecoilValue(gameSpeedState)
 
   // Game loop
@@ -24,6 +24,8 @@ const Grid = () => {
     let gameInterval: ReturnType<typeof setInterval> = setInterval(
       () => {
         const newGrid = [...grid].map((cell: ICell) => getNewCellBasedOnRules(grid, cell))
+        // If there's no more possible evolution, the game automatically stops
+        if (JSON.stringify(newGrid) === JSON.stringify(grid)) setRunning(false)
         setGrid(newGrid)
       },
       delay
