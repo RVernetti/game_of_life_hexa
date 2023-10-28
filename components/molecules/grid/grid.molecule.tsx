@@ -23,7 +23,7 @@ const Grid = () => {
     const delay: number = Math.round(1000 / gameSpeed)
     let gameInterval: ReturnType<typeof setInterval> = setInterval(
       () => {
-        const newGrid = grid.map((cell: ICell) => getNewCellBasedOnRules(grid, cell))
+        const newGrid = [...grid].map((cell: ICell) => getNewCellBasedOnRules(grid, cell))
         setGrid(newGrid)
       },
       delay
@@ -32,7 +32,7 @@ const Grid = () => {
     if (!running) clearInterval(gameInterval)
     // On unmount we clear the interval
     return () => clearInterval(gameInterval)
-  }, [running, gameSpeed])
+  }, [running, gameSpeed, grid])
 
   // Cells' display
   const display = grid.map((cell: ICell) => {
