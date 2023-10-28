@@ -4,11 +4,11 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 import { gridState } from '@/stores/grid.store'
 import { gameRunningState, gameSpeedState } from '@/stores/game.store'
 
-import { Hex } from '@/helpers/hex/hexagonal.helper'
+import { ICell } from '@/interfaces/grid.interface'
+
+import { getNewCellBasedOnRules } from '@/helpers/grid/grid.helper'
 
 import { Cell } from '@/components/atoms'
-
-import { ICell } from '@/interfaces/grid.interface'
 
 import styles from './grid.module.css'
 
@@ -22,7 +22,10 @@ const Grid = () => {
   useEffect(() => {
       const delay: number = Math.round(1000 / gameSpeed)
       let gameInterval: ReturnType<typeof setInterval> = setInterval(
-      () => console.log('One more turn'),
+      () => {
+        const newGrid = grid.map((cell: ICell) => getNewCellBasedOnRules(grid, cell))
+        setGrid(newGrid)
+      },
       delay
       )
       if (!running) clearInterval(gameInterval)

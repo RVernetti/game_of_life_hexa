@@ -47,19 +47,22 @@ const getNewGridOnCellClick = (grid: IGrid, clickedCell: ICell) => {
 
     /**
      * The rules of the game concerning the fate of a cell
-     * @param grid - The grid containing all the coordinates of cells
-     * @param coordinates - The coordinates of a given cell
+     * @param grid - The grid containing all cells
+     * @param cell - The concerned cell
      */
-    const getNextGrid = (grid: IGrid, cell: ICell) => {
+    const getNewCellBasedOnRules = (grid: IGrid, cell: ICell) => {
         const { coordinates, alive } = cell
+        const newCell = { ...cell, alive: !alive }
         // We count the number of living neighboring cells
         const livingNeighborsNumber = getNumberOfLivingNeighboringCells(grid, coordinates)
         // If the cell is alive this turn
         if (alive) {
             // If living neighboring cells are not enough, she dies
-            if (livingNeighborsNumber < 2) return getNewGridOnCellClick(grid, cell)
-            // If she's dead this turn, and living neighboring cells are enough, she's borning
-        } else if (livingNeighborsNumber === 3) return getNewGridOnCellClick(grid, cell)
+            if (livingNeighborsNumber < 2) return newCell
+        // If she was dead this turn and living neighboring cells are enough, she's borning
+        } else if (livingNeighborsNumber === 3) return newCell
+        // Else the cell status hasn't change, she remains the same
+        return cell
     }
 
-export { generateGrid, getNewGridOnCellClick, getNextGrid }
+export { generateGrid, getNewGridOnCellClick, getNewCellBasedOnRules }
