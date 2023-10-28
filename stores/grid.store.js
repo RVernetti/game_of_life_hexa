@@ -1,7 +1,13 @@
 import { atom } from 'recoil'
 
-// The adjustable grid radius
-export const gridRadiusState = atom({
-    key: 'grid-radius-state', // unique ID (with respect to other atoms/selectors)
-    default: 10, // default value (aka initial value)
+import { generateGrid } from '@/helpers/grid/grid.helper'
+
+export const gridState = atom({
+    key: 'grid-state',
+    default: generateGrid(10),
+})
+
+export const cellRadiusState = atom({
+    key: 'cell-radius-state',
+    default: 20,
 })
