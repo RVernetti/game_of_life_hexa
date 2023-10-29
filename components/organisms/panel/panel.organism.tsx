@@ -11,12 +11,14 @@ import {
 } from '@/components/molecules'
 
 const Panel = () => (
-  <div className={styles.panel}>
-    <GridRadiusInput />
-    <CellsRadiusInput />
-    <PopulationFactorInput />
-    <GameSpeedInput />
-    <RunningButton />
+  <div className={styles.layout}>
+    <div className={styles.panel}>
+      <PopulationFactorInput />
+      <GameSpeedInput />
+      <CellsRadiusInput />
+      <GridRadiusInput />
+      <RunningButton />
+    </div>
   </div>
 )
 

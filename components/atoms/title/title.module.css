@@ -9,6 +9,13 @@
     font-size: 20px;
 }
 
+/* Tablet and Desktop */
+@media (min-width: 701px) {
+    .title {
+        white-space: nowrap;
+    }
+}
+
 @media (prefers-color-scheme: dark) {
     .title {
         color: #FFFFFF;

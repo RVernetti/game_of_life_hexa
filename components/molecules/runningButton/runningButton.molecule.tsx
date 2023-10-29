@@ -12,7 +12,7 @@ const RunningButton = () => {
     const [running, setRunning] = useRecoilState(gameRunningState)
 
     return (
-        <Button onClick={() => setRunning(!running)}>
+        <Button onClick={() => setRunning(!running)} style={{alignSelf: 'center'}}>
             {running ? 'Stop' : 'Play'}
         </Button>
     )

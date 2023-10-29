@@ -7,13 +7,14 @@
   gap: 10px;
 }
 
-/* Tablet and Smaller Desktop */
+/* Tablet and Desktop */
 @media (min-width: 701px) {
   .layout {
     flex-direction: row;
   }
 }
 
+/* VERCEL LOGOS TIPS */
 @media (prefers-color-scheme: dark) {
   /* .vercelLogo {
     filter: invert(1);
