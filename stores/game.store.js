@@ -10,3 +10,8 @@ export const gameSpeedState = atom({
     key: 'game-speed-state',
     default: 10,
 })
+
+export const rulesFactorState = atom({
+    key: 'rules-factor-state',
+    default: 3, // original Game of Life rules
+})
