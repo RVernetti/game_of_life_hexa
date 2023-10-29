@@ -1,1 +1,1 @@
-export { default as Panel } from './panel/panel.organism'
+export { default as Panel } from './Panel/panel.organism'

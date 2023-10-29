@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { gridState } from '@/stores/grid.store'
-import { gameRunningState, gameSpeedState } from '@/stores/game.store'
+import { gameRunningState, gameSpeedState, populationFactorState } from '@/stores/game.store'
 
 import { ICell } from '@/interfaces/grid.interface'
 
@@ -17,13 +17,14 @@ const Grid = () => {
   const [grid, setGrid] = useRecoilState(gridState)
   const [running, setRunning] = useRecoilState(gameRunningState)
   const gameSpeed: number = useRecoilValue(gameSpeedState)
+  const rulesFactor: number = useRecoilValue(populationFactorState)
 
   // Game loop
   useEffect(() => {
     const delay: number = Math.round(1000 / gameSpeed)
     let gameInterval: ReturnType<typeof setInterval> = setInterval(
       () => {
-        const newGrid = [...grid].map((cell: ICell) => getNewCellBasedOnRules(grid, cell))
+        const newGrid = [...grid].map((cell: ICell) => getNewCellBasedOnRules(grid, cell, rulesFactor))
         // If there's no more possible evolution, the game automatically stops
         if (JSON.stringify(newGrid) === JSON.stringify(grid)) setRunning(false)
         setGrid(newGrid)

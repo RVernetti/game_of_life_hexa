@@ -1,4 +1,4 @@
-export { default as Button } from './button/button.atom'
-export { default as Cell } from './cell/cell.atom'
-export { default as Input } from './input/input.atom'
-export { default as Title } from './title/title.atom'
+export { default as Button } from './Button/button.atom'
+export { default as Cell } from './Cell/cell.atom'
+export { default as Input } from './Input/input.atom'
+export { default as Title } from './Title/title.atom'
