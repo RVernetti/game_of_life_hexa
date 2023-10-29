@@ -57,8 +57,8 @@ const getNewGridOnCellClick = (grid: IGrid, clickedCell: ICell) => {
         const livingNeighborsNumber = getNumberOfLivingNeighboringCells(grid, coordinates)
         // If the cell is alive this turn
         if (alive) {
-            // If living neighboring cells are not enough, she dies
-            if (livingNeighborsNumber < 2) return newCell
+            // If living neighboring cells are not enough or too much, she dies
+            if (livingNeighborsNumber < 2 || livingNeighborsNumber > 3) return newCell
         // If she was dead this turn and living neighboring cells are enough, she's borning
         } else if (livingNeighborsNumber === 3) return newCell
         // Else the cell status hasn't change, she remains the same
