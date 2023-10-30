@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilState } from 'recoil'
 import { gameRunningState } from '@/stores/game.store'
 
 import { Button } from '@/components/atoms'

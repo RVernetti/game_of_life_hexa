@@ -7,21 +7,22 @@ import {
   GameSpeedInput, 
   GridRadiusInput, 
   PopulationFactorInput, 
-  ResetButton, 
-  RunningButton 
 } from '@/components/molecules'
 
+import {
+  ResetButton, 
+  RunningButton,
+} from '@/components/isotopes'
+
 const Panel = () => (
-  <div className={styles.layout}>
-    <div className={styles.panel}>
-      <PopulationFactorInput />
-      <GameSpeedInput />
-      <CellsRadiusInput />
-      <GridRadiusInput />
-      <div className={styles.buttons}>
-        <RunningButton />
-        <ResetButton />
-      </div>
+  <div className={styles.panel}>
+    <PopulationFactorInput />
+    <GameSpeedInput />
+    <CellsRadiusInput />
+    <GridRadiusInput />
+    <div className={styles.buttons}>
+      <RunningButton />
+      <ResetButton />
     </div>
   </div>
 )
