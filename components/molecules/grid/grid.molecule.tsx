@@ -8,7 +8,7 @@ import { ICell } from '@/interfaces/grid.interface'
 
 import { getNewCellBasedOnRules } from '@/helpers/grid/grid.helper'
 
-import { Cell } from '@/components/isotopes'
+import { Cell } from '@/components/atoms'
 
 import styles from './grid.module.css'
 
