@@ -52,7 +52,7 @@ const Cell = (props: Cell) => {
 
     return (
         <button 
-            className={alive ? styles.alive : styles.dead} 
+            className={alive ? styles.alive : styles.dead}
             onClick={handleClick}
             style={{
                 height: cellSize,
