@@ -13,5 +13,6 @@ export const gameSpeedState = atom({
 
 export const populationFactorState = atom({
     key: 'population-factor-state',
-    default: 3, // original Game of Life rules
+    default: 2, // the original Game of Life rules population factor is 3
+    // but for a hexagonal grid, neighbors are 6 and not 8
 })
