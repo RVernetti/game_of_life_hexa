@@ -4,3 +4,4 @@ export { default as GameSpeedInput } from './GameSpeedInput/gameSpeedInput.molec
 export { default as GridRadiusInput } from './GridRadiusInput/gridRadiusInput.molecule'
 export { default as RunningButton } from './RunningButton/runningButton.molecule'
 export { default as PopulationFactorInput } from './PopulationFactorInput/rulesFactorInput.molecule'
+export { default as ResetButton } from './ResetButton/resetButton.molecule'

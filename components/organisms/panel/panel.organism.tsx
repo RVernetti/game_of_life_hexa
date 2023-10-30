@@ -7,6 +7,7 @@ import {
   GameSpeedInput, 
   GridRadiusInput, 
   PopulationFactorInput, 
+  ResetButton, 
   RunningButton 
 } from '@/components/molecules'
 
@@ -17,7 +18,10 @@ const Panel = () => (
       <GameSpeedInput />
       <CellsRadiusInput />
       <GridRadiusInput />
-      <RunningButton />
+      <div className={styles.buttons}>
+        <RunningButton />
+        <ResetButton />
+      </div>
     </div>
   </div>
 )
