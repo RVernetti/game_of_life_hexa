@@ -1,5 +1,5 @@
 import { ICell, IGrid } from '@/interfaces/grid.interface'
-import { Hex } from '../hex/hexagonal.helper'
+import { Hex } from './hexagonal.helper'
 
 /**
  * Generates a circular grid of hexagonal coordinates from a given radius

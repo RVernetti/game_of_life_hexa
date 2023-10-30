@@ -7,7 +7,7 @@ import { gridState } from '@/stores/grid.store'
 import { gameRunningState } from '@/stores/game.store'
 
 import { Input, Title } from '@/components/atoms'
-import { generateGrid } from '@/helpers/grid/grid.helper'
+import { generateGrid } from '@/helpers/grid.helper'
 
 const GridRadiusInput = () => {
   const [grid, setGrid] = useRecoilState(gridState)

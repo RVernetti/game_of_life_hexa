@@ -9,9 +9,9 @@ export class Point {
 
 export class Hex {
     constructor(q, r, s){
-        this.q = q;
-        this.r = r;
-        this.s = s;
+        this.q = q !== -0 ? q : 0;
+        this.r = r !== -0 ? r : 0;
+        this.s = s !== -0 ? s : 0;
         if (Math.round(q + r + s) !== 0)
             throw `q + r + s must be 0, was ${q + r + s}`;
     }

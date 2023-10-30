@@ -1,6 +1,6 @@
 import { atom } from 'recoil'
 
-import { generateGrid } from '@/helpers/grid/grid.helper'
+import { generateGrid } from '@/helpers/grid.helper'
 
 export const gridState = atom({
     key: 'grid-state',

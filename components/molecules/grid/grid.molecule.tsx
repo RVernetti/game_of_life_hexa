@@ -6,7 +6,7 @@ import { gameRunningState, gameSpeedState, populationFactorState } from '@/store
 
 import { ICell } from '@/interfaces/grid.interface'
 
-import { getNewCellBasedOnRules } from '@/helpers/grid/grid.helper'
+import { getNewCellBasedOnRules } from '@/helpers/grid.helper'
 
 import { Cell } from '@/components/atoms'
 
