@@ -8,7 +8,7 @@ import { useRecoilValue, useRecoilState } from 'recoil'
 import { gridState, cellRadiusState } from '@/stores/grid.store'
 
 import { Point, Layout } from '@/helpers/hexagonal.helper'
-import { getNewGridOnCellClick } from '@/helpers/grid.helper'
+import { getNewGridOnCellClick } from '@/helpers/grid/grid.helper'
 
 import styles from './cell.module.css'
 import { gameRunningState } from '@/stores/game.store'

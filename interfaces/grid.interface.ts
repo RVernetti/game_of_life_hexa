@@ -1,4 +1,4 @@
-import { Hex } from '@/helpers/hex/hexagonal.helper'
+import { Hex } from '@/helpers/hexagonal.helper'
 
 export interface ICell {
     coordinates: Hex,
