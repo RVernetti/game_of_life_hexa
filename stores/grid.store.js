@@ -11,3 +11,8 @@ export const cellRadiusState = atom({
     key: 'cell-radius-state',
     default: 20,
 })
+
+export const gridRadiusState = atom({
+    key: 'grid-radius-state',
+    default: 10,
+})

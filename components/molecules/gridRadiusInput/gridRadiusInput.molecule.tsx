@@ -3,7 +3,7 @@
 import React from 'react'
 
 import { useRecoilState } from 'recoil'
-import { gridState } from '@/stores/grid.store'
+import { gridRadiusState, gridState } from '@/stores/grid.store'
 import { gameRunningState } from '@/stores/game.store'
 
 import { Input, Title } from '@/components/atoms'
@@ -12,13 +12,15 @@ import { generateGrid } from '@/helpers/grid/grid.helper'
 const GridRadiusInput = () => {
   const [grid, setGrid] = useRecoilState(gridState)
   const [running, setRunning] = useRecoilState(gameRunningState)
+  const [gridRadius, setGridRadius] = useRecoilState(gridRadiusState)
 
   const handleGridRadiusChange = (e: React.FormEvent<HTMLInputElement>) => {
     setRunning(false)
     const radius: number = parseInt((e.target as HTMLInputElement).value) || 1
-    // TODO: function to preserve ancient grid cells statuses instead of renew
+    setGridRadius(radius)
     const newGrid = generateGrid(radius)
-    return setGrid(newGrid)
+    // TODO: function to preserve ancient grid cells statuses instead of renew
+    setGrid(newGrid)
   }
 
 
