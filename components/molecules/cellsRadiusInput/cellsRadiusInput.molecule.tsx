@@ -24,7 +24,7 @@ const CellsRadiusInput = () => {
       <Input
         id="cell's-radius-input"
         onChange={handleCellRadiusChange}
-        min='10'
+        min='5'
         max='99'
         defaultValue={cellRadius}
       />
