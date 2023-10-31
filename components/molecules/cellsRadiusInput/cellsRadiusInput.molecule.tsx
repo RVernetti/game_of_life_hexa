@@ -20,7 +20,7 @@ const CellsRadiusInput = () => {
   }
 
   return (
-    <Title title="Cell's radius:">
+    <Title title="Cell radius:">
       <Input
         id="cell's-radius-input"
         onChange={handleCellRadiusChange}
