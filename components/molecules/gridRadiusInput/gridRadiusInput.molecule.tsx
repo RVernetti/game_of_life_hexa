@@ -28,7 +28,7 @@ const GridRadiusInput = () => {
         id='grid-radius-input'
         onChange={handleGridRadiusChange}
         min='1'
-        max='20'
+        max='15'
         defaultValue={10}
       />
     </Title>

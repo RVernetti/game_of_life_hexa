@@ -8,7 +8,7 @@ export const gameRunningState = atom({
 
 export const gameSpeedState = atom({
     key: 'game-speed-state',
-    default: 10,
+    default: 1,
 })
 
 export const populationFactorState = atom({

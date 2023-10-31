@@ -11,7 +11,8 @@ const GameSpeedInput = () => {
   const [speed, setSpeed] = useRecoilState(gameSpeedState)
 
   const handleGameSpeedChange = (e: React.FormEvent<HTMLInputElement>) => {
-    const speed: number = parseInt((e.target as HTMLInputElement).value) || 20
+    const speed: number = parseInt((e.target as HTMLInputElement).value) || 1
+    
     return setSpeed(speed)
   }
 
@@ -21,7 +22,7 @@ const GameSpeedInput = () => {
         id="game-speed-input"
         onChange={handleGameSpeedChange}
         min='1'
-        max='10'
+        max='5'
         defaultValue={speed}
       />
     </Title>
