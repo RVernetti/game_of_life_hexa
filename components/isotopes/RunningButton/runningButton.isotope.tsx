@@ -7,12 +7,11 @@ import { gameRunningState } from '@/stores/game.store'
 
 import { Button } from '@/components/atoms'
 
-
 const RunningButton = () => {
     const [running, setRunning] = useRecoilState(gameRunningState)
 
     return (
-        <Button onClick={() => setRunning(!running)} style={{alignSelf: 'center'}}>
+        <Button onClick={() => setRunning(!running)}>
             {running ? 'Stop' : 'Play'}
         </Button>
     )

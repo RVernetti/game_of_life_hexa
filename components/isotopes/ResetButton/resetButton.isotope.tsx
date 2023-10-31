@@ -20,7 +20,7 @@ const ResetButton = () => {
     }
 
     return (
-        <Button onClick={handleClick} style={{alignSelf: 'center'}}>
+        <Button onClick={handleClick}>
             Reset
         </Button>
     )
