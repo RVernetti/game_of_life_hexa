@@ -20,6 +20,12 @@ const generateGrid = (radius: number) => {
     return grid
 }
 
+/**
+ * Gives the new grid after clicking on a given cell
+ * @param grid - The initial grid containing all the coordinates of cells
+ * @param clickedCell - The given clicked cell
+ * @returns {IGrid} The new grid
+ */
 const getNewGridOnCellClick = (grid: IGrid, clickedCell: ICell) => {
     const { coordinates, alive } = clickedCell
     const newCell = { ...clickedCell, alive: !alive }
@@ -27,42 +33,42 @@ const getNewGridOnCellClick = (grid: IGrid, clickedCell: ICell) => {
     return [...grid.slice(0, index), newCell, ...grid.slice(index + 1)]
 }
 
-    /**
-     * Gives the number of living neighboring cells
-     * @param grid - The grid containing all the coordinates of cells
-     * @param coordinates - The coordinates of a given cell
-     * @returns {number} The number of living neighboring cells
-     */
-    const getNumberOfLivingNeighboringCells = (grid: IGrid, coordinates: Hex) => {
-        let count = 0
-        // We check all cells surrounding the given cell, exploring all possible directions
-        for (let i = 0; i < 6; ++i) {
-            const neighborCoordinates = coordinates.neighbor(i)
-            const neighbor = grid.find((cell: ICell) => JSON.stringify(cell.coordinates) === JSON.stringify(neighborCoordinates))
-            // If the neighboring cell exists in the grid and is alive, we increment the count
-            if (neighbor?.alive) ++count
-        }
-        return count
+/**
+ * Gives the number of living neighboring cells
+ * @param grid - The grid containing all the coordinates of cells
+ * @param coordinates - The coordinates of a given cell
+ * @returns {number} The number of living neighboring cells
+ */
+const getNumberOfLivingNeighboringCells = (grid: IGrid, coordinates: Hex) => {
+    let count = 0
+    // We check all cells surrounding the given cell, exploring all possible directions
+    for (let i = 0; i < 6; ++i) {
+        const neighborCoordinates = coordinates.neighbor(i)
+        const neighbor = grid.find((cell: ICell) => JSON.stringify(cell.coordinates) === JSON.stringify(neighborCoordinates))
+        // If the neighboring cell exists in the grid and is alive, we increment the count
+        if (neighbor?.alive) ++count
     }
+    return count
+}
 
-    /**
-     * The rules of the game concerning the fate of a cell
-     * @param grid - The grid containing all cells
-     * @param cell - The concerned cell
-     */
-    const getNewCellBasedOnRules = (grid: IGrid, cell: ICell, factor: number = 3) => {
-        const { coordinates, alive } = cell
-        const newCell = { ...cell, alive: !alive }
-        // We count the number of living neighboring cells
-        const livingNeighborsNumber = getNumberOfLivingNeighboringCells(grid, coordinates)
-        // If the cell is alive this turn
-        if (alive) {
-            // If living neighboring cells are too far from factor, she dies by lonelyness or overcrowding
-            if (livingNeighborsNumber < (factor - 1) || livingNeighborsNumber > factor) return newCell
-        // If she was dead this turn and living neighboring cells are equal to the factor, she's borning
-        } else if (livingNeighborsNumber === factor) return newCell
-        // Else the cell status hasn't change, she remains the same
-        return cell
-    }
+/**
+ * The rules of the game concerning the fate of a cell
+ * @param grid - The grid containing all cells
+ * @param cell - The concerned cell
+ */
+const getNewCellBasedOnRules = (grid: IGrid, cell: ICell, factor: number = 3) => {
+    const { coordinates, alive } = cell
+    const newCell = { ...cell, alive: !alive }
+    // We count the number of living neighboring cells
+    const livingNeighborsNumber = getNumberOfLivingNeighboringCells(grid, coordinates)
+    // If the cell is alive this turn
+    if (alive) {
+        // If living neighboring cells are too far from factor, she dies by lonelyness or overcrowding
+        if (livingNeighborsNumber < (factor - 1) || livingNeighborsNumber > factor) return newCell
+    // If she was dead this turn and living neighboring cells are equal to the factor, she's borning
+    } else if (livingNeighborsNumber === factor) return newCell
+    // Else the cell status hasn't change, she remains the same
+    return cell
+}
 
 export { generateGrid, getNewGridOnCellClick, getNewCellBasedOnRules }
