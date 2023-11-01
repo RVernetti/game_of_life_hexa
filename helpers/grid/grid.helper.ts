@@ -44,7 +44,9 @@ const getNumberOfLivingNeighboringCells = (grid: IGrid, coordinates: Hex) => {
     // We check all cells surrounding the given cell, exploring all possible directions
     for (let i = 0; i < 6; ++i) {
         const neighborCoordinates = coordinates.neighbor(i)
-        const neighbor = grid.find((cell: ICell) => JSON.stringify(cell.coordinates) === JSON.stringify(neighborCoordinates))
+        const neighbor = grid.find(
+            (cell: ICell) => JSON.stringify(cell.coordinates) === JSON.stringify(neighborCoordinates)
+        )
         // If the neighboring cell exists in the grid and is alive, we increment the count
         if (neighbor?.alive) ++count
     }
@@ -71,4 +73,4 @@ const getNewCellBasedOnRules = (grid: IGrid, cell: ICell, factor: number = 3) =>
     return cell
 }
 
-export { generateGrid, getNewGridOnCellClick, getNewCellBasedOnRules }
+export { generateGrid, getNewGridOnCellClick, getNumberOfLivingNeighboringCells, getNewCellBasedOnRules }
