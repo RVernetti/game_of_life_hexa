@@ -52,6 +52,8 @@ describe('getNewGridOnCellClick', () => {
     test('clicking on a living cell should return a grid with this cell dead', () => {
         const livingClickedCell: ICell = oneLivingCellGridWithARadiusOfOne[5]
         const result: IGrid = getNewGridOnCellClick(oneLivingCellGridWithARadiusOfOne, livingClickedCell)
+        const numberOfLivingCells: number = result.filter((cell) => cell.alive).length
+        expect(numberOfLivingCells).toBe(0)
         expect(result).toStrictEqual(virginGridWithARadiusOfOne)
     })
 })
