@@ -1,5 +1,7 @@
 import { ICell, IGrid } from '@/interfaces/grid.interface'
 
+import { Hex } from '@/helpers/hexagonal.helper'
+
 import {
     generateGrid,
     getNumberOfLivingCells, 
@@ -8,9 +10,8 @@ import {
     getNewCellBasedOnRules 
 } from '@/helpers/grid/grid.helper'
 
-import { Hex } from '@/helpers/hexagonal.helper'
-
-// Based on an initial population factor of 2:
+// Based on an default population factor of 2:
+const populationFactor = 2
 
 const virginGridWithARadiusOfOne: IGrid = [             // 7 cells:
     { coordinates: new Hex(-1, 0, 1), alive: false },   // [0]
@@ -33,7 +34,7 @@ const multipleLivingCellsGrid: IGrid = [                // 7 cells:
 ]
 
 describe('generateGrid', () => {
-    test('a radius of 0 should produce a single dead cell grid:', () => {
+    test('A radius of 0 should produce a single dead cell grid', () => {
         const radius: number = 0
         const expected: IGrid = [{ coordinates: new Hex(0, 0, 0), alive: false }]
         const result: IGrid = generateGrid(radius)
@@ -41,7 +42,7 @@ describe('generateGrid', () => {
         expect(result).toStrictEqual(expected)
         expect(numberOfLivingCells).toBe(0)
     })
-    test('a radius of 1 should produce a seven dead cells grid:', () => {
+    test('A radius of 1 should produce a seven dead cells grid', () => {
         const radius: number = 1
         const result: IGrid = generateGrid(radius)
         const numberOfLivingCells: number = getNumberOfLivingCells(result)
@@ -51,11 +52,11 @@ describe('generateGrid', () => {
 })
 
 describe('getNumberOfLivingCells', () => {
-    test('a virgin grid without living cell should return "0":', () => {
+    test('A virgin grid without living cell should return "0"', () => {
         const result = getNumberOfLivingCells(virginGridWithARadiusOfOne)
         expect(result).toBe(0)
     })
-    test('a grid with three living cells should return "3":', () => {
+    test('A grid with three living cells should return "3"', () => {
         const result = getNumberOfLivingCells(multipleLivingCellsGrid)
         expect(result).toBe(3)
     })
@@ -71,14 +72,14 @@ describe('getNewGridOnCellClick', () => {
         { coordinates: new Hex(1, -1, 0), alive: true },    // [5]
         { coordinates: new Hex(1, 0, -1), alive: false },   // [6]
     ]
-    test('clicking on a virgin grid should return a one living cell grid:', () => {
+    test('Clicking on a virgin grid should return a one living cell grid', () => {
         const clickedCell: ICell = virginGridWithARadiusOfOne[5]
         const result: IGrid = getNewGridOnCellClick(virginGridWithARadiusOfOne, clickedCell)
         const numberOfLivingCells: number = getNumberOfLivingCells(result)
         expect(numberOfLivingCells).toBe(1)
         expect(result).toStrictEqual(oneLivingCellGrid)
     })
-    test('clicking on a living cell should return a grid with this same cell dead:', () => {
+    test('Clicking on a living cell should return a grid with this same cell dead', () => {
         const livingClickedCell: ICell = oneLivingCellGrid[5]
         const result: IGrid = getNewGridOnCellClick(oneLivingCellGrid, livingClickedCell)
         const numberOfLivingCells: number = getNumberOfLivingCells(result)
@@ -88,31 +89,31 @@ describe('getNewGridOnCellClick', () => {
 })
 
 describe('getNumberOfLivingNeighboringCells', () => {
-    test('targeting the origin on a grid of three living cells should return "3":', () => {
+    test('Targeting the origin on a grid of three living cells should return "3"', () => {
         const targetedCell = multipleLivingCellsGrid[3]
         const { coordinates } = targetedCell
         const result = getNumberOfLivingNeighboringCells(multipleLivingCellsGrid, coordinates)
         expect(result).toBe(3)
     })
-    test('targeting a cell on the edge surrounded by two living cells should return "2":', () => {
+    test('Targeting a cell on the edge surrounded by two living cells should return "2"', () => {
         const targetedCell = multipleLivingCellsGrid[1]
         const { coordinates } = targetedCell
         const result = getNumberOfLivingNeighboringCells(multipleLivingCellsGrid, coordinates)
         expect(result).toBe(2)
     })
-    test('targeting a cell on the edge not surrounded by living cell should return "0":', () => {
+    test('Targeting a cell on the edge not surrounded by living cell should return "0"', () => {
         const targetedCell = multipleLivingCellsGrid[0]
         const { coordinates } = targetedCell
         const result = getNumberOfLivingNeighboringCells(multipleLivingCellsGrid, coordinates)
         expect(result).toBe(0)
     })
-    test('targeting the origin on a virgin grid should return "0":', () => {
+    test('Targeting the origin on a virgin grid should return "0"', () => {
         const targetedCell = virginGridWithARadiusOfOne[3]
         const { coordinates } = targetedCell
         const result = getNumberOfLivingNeighboringCells(virginGridWithARadiusOfOne, coordinates)
         expect(result).toBe(0)
     })
-    test('targeting a cell on the edge on a virgin grid should return "0":', () => {
+    test('Targeting a cell on the edge on a virgin grid should return "0"', () => {
         const targetedCell = virginGridWithARadiusOfOne[5]
         const { coordinates } = targetedCell
         const result = getNumberOfLivingNeighboringCells(virginGridWithARadiusOfOne, coordinates)
@@ -121,13 +122,19 @@ describe('getNumberOfLivingNeighboringCells', () => {
 })
 
 describe('getNewCellBasedOnRules', () => {
-    test('a living cell surrounded by three living cells shoud die by overcrowding:', () => {
-
+    test('A living cell surrounded by three living cells shoud die by overcrowding', () => {
+        const targetedCell = multipleLivingCellsGrid[3]
+        const result = getNewCellBasedOnRules(multipleLivingCellsGrid, targetedCell, populationFactor)
+        expect(result.alive).toBeFalsy
     })
-    test('a living cell surrounded by only one living cell shoud die by lonelyness:', () => {
-
+    test('A living cell surrounded by only one living cell shoud die by lonelyness', () => {
+        const targetedCell = multipleLivingCellsGrid[1]
+        const result = getNewCellBasedOnRules(multipleLivingCellsGrid, targetedCell, populationFactor)
+        expect(result.alive).toBeFalsy
     })
-    test('a dead cell surrounded by three living cells shoud be borning:', () => {
-        
+    test('A dead cell surrounded by three living cells shoud be borning', () => {
+        const targetedCell = multipleLivingCellsGrid[0]
+        const result = getNewCellBasedOnRules(multipleLivingCellsGrid, targetedCell, populationFactor)
+        expect(result.alive).toBeTruthy
     })
 })
