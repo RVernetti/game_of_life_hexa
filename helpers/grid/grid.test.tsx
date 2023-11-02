@@ -23,13 +23,23 @@ const virginGridWithARadiusOfOne: IGrid = [             // 7 cells:
     { coordinates: new Hex(1, 0, -1), alive: false },   // [6]
 ]
 
-const multipleLivingCellsGrid: IGrid = [                // 7 cells:
-    { coordinates: new Hex(-1, 0, 1), alive: true },    // [0]
+const oneLivingCellGrid: IGrid = [                      // 7 cells:
+    { coordinates: new Hex(-1, 0, 1), alive: false },   // [0]
     { coordinates: new Hex(-1, 1, 0), alive: false },   // [1]
     { coordinates: new Hex(0, -1, 1), alive: false },   // [2]
     { coordinates: new Hex(0, 0, 0), alive: false },    // [3] origin
-    { coordinates: new Hex(0, 1, -1), alive: true },    // [4]
-    { coordinates: new Hex(1, -1, 0), alive: true },    // [5]
+    { coordinates: new Hex(0, 1, -1), alive: false },   // [4]
+    { coordinates: new Hex(1, -1, 0), alive: true },    // [5] alive
+    { coordinates: new Hex(1, 0, -1), alive: false },   // [6]
+]
+
+const multipleLivingCellsGrid: IGrid = [                // 7 cells:
+    { coordinates: new Hex(-1, 0, 1), alive: true },    // [0] alive
+    { coordinates: new Hex(-1, 1, 0), alive: false },   // [1]
+    { coordinates: new Hex(0, -1, 1), alive: false },   // [2]
+    { coordinates: new Hex(0, 0, 0), alive: false },    // [3] origin
+    { coordinates: new Hex(0, 1, -1), alive: true },    // [4] alive
+    { coordinates: new Hex(1, -1, 0), alive: true },    // [5] alive
     { coordinates: new Hex(1, 0, -1), alive: false },   // [6]
 ]
 
@@ -56,6 +66,10 @@ describe('getNumberOfLivingCells', () => {
         const result = getNumberOfLivingCells(virginGridWithARadiusOfOne)
         expect(result).toBe(0)
     })
+    test('A grid with one living cell should return "1"', () => {
+        const result = getNumberOfLivingCells(oneLivingCellGrid)
+        expect(result).toBe(1)
+    })
     test('A grid with three living cells should return "3"', () => {
         const result = getNumberOfLivingCells(multipleLivingCellsGrid)
         expect(result).toBe(3)
@@ -63,15 +77,6 @@ describe('getNumberOfLivingCells', () => {
 })
 
 describe('getNewGridOnCellClick', () => {
-    const oneLivingCellGrid: IGrid = [                      // 7 cells:
-        { coordinates: new Hex(-1, 0, 1), alive: false },   // [0]
-        { coordinates: new Hex(-1, 1, 0), alive: false },   // [1]
-        { coordinates: new Hex(0, -1, 1), alive: false },   // [2]
-        { coordinates: new Hex(0, 0, 0), alive: false },    // [3] origin
-        { coordinates: new Hex(0, 1, -1), alive: false },   // [4]
-        { coordinates: new Hex(1, -1, 0), alive: true },    // [5]
-        { coordinates: new Hex(1, 0, -1), alive: false },   // [6]
-    ]
     test('Clicking on a virgin grid should return a one living cell grid', () => {
         const clickedCell: ICell = virginGridWithARadiusOfOne[5]
         const result: IGrid = getNewGridOnCellClick(virginGridWithARadiusOfOne, clickedCell)
