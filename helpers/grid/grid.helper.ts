@@ -20,18 +20,7 @@ const generateGrid = (radius: number) => {
     return grid
 }
 
-/**
- * Gives the new grid after clicking on a given cell
- * @param grid - The initial grid containing all the coordinates of cells
- * @param clickedCell - The given clicked cell
- * @returns {IGrid} The new grid
- */
-const getNewGridOnCellClick = (grid: IGrid, clickedCell: ICell) => {
-    const { coordinates, alive } = clickedCell
-    const newCell = { ...clickedCell, alive: !alive }
-    const index = grid.findIndex((cell) => cell.coordinates === coordinates)
-    return [...grid.slice(0, index), newCell, ...grid.slice(index + 1)]
-}
+const getNumberOfLivingCells = (grid: IGrid) => grid.filter((cell: ICell) => cell.alive).length
 
 /**
  * Gives the number of living neighboring cells
@@ -54,6 +43,19 @@ const getNumberOfLivingNeighboringCells = (grid: IGrid, coordinates: Hex) => {
 }
 
 /**
+ * Gives the new grid after clicking on a given cell
+ * @param grid - The initial grid containing all the coordinates of cells
+ * @param clickedCell - The given clicked cell
+ * @returns {IGrid} The new grid
+ */
+const getNewGridOnCellClick = (grid: IGrid, clickedCell: ICell) => {
+    const { coordinates, alive } = clickedCell
+    const newCell = { ...clickedCell, alive: !alive }
+    const index = grid.findIndex((cell) => cell.coordinates === coordinates)
+    return [...grid.slice(0, index), newCell, ...grid.slice(index + 1)]
+}
+
+/**
  * The rules of the game concerning the fate of a cell
  * @param grid - The grid containing all cells
  * @param cell - The concerned cell
@@ -73,4 +75,10 @@ const getNewCellBasedOnRules = (grid: IGrid, cell: ICell, factor: number) => {
     return cell
 }
 
-export { generateGrid, getNewGridOnCellClick, getNumberOfLivingNeighboringCells, getNewCellBasedOnRules }
+export { 
+    generateGrid,
+    getNumberOfLivingCells, 
+    getNumberOfLivingNeighboringCells,
+    getNewGridOnCellClick,
+    getNewCellBasedOnRules 
+}
