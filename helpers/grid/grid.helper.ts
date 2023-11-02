@@ -58,7 +58,7 @@ const getNumberOfLivingNeighboringCells = (grid: IGrid, coordinates: Hex) => {
  * @param grid - The grid containing all cells
  * @param cell - The concerned cell
  */
-const getNewCellBasedOnRules = (grid: IGrid, cell: ICell, factor: number = 3) => {
+const getNewCellBasedOnRules = (grid: IGrid, cell: ICell, factor: number) => {
     const { coordinates, alive } = cell
     const newCell = { ...cell, alive: !alive }
     // We count the number of living neighboring cells
