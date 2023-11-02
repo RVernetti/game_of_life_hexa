@@ -3,20 +3,30 @@ import { ICell, IGrid } from '@/interfaces/grid.interface'
 import { 
     generateGrid, 
     getNewGridOnCellClick, 
+    getNumberOfLivingNeighboringCells,
     getNewCellBasedOnRules, 
-    getNumberOfLivingNeighboringCells
 } from '@/helpers/grid/grid.helper'
 
 import { Hex } from '@/helpers/hexagonal.helper'
 
-const virginGridWithARadiusOfOne: IGrid = [
-    { coordinates: new Hex(-1, 0, 1), alive: false },
-    { coordinates: new Hex(-1, 1, 0), alive: false },
-    { coordinates: new Hex(0, -1, 1), alive: false },
-    { coordinates: new Hex(0, 0, 0), alive: false },
-    { coordinates: new Hex(0, 1, -1), alive: false },
-    { coordinates: new Hex(1, -1, 0), alive: false },
-    { coordinates: new Hex(1, 0, -1), alive: false },
+const virginGridWithARadiusOfOne: IGrid = [             // 7 cells:
+    { coordinates: new Hex(-1, 0, 1), alive: false },   // [0]
+    { coordinates: new Hex(-1, 1, 0), alive: false },   // [1]
+    { coordinates: new Hex(0, -1, 1), alive: false },   // [2]
+    { coordinates: new Hex(0, 0, 0), alive: false },    // [3]
+    { coordinates: new Hex(0, 1, -1), alive: false },   // [4]
+    { coordinates: new Hex(1, -1, 0), alive: false },   // [5]
+    { coordinates: new Hex(1, 0, -1), alive: false },   // [6]
+]
+
+const multipleLivingCellsGrid: IGrid = [                // 7 cells:
+    { coordinates: new Hex(-1, 0, 1), alive: false },    // [0]
+    { coordinates: new Hex(-1, 1, 0), alive: false },   // [1]
+    { coordinates: new Hex(0, -1, 1), alive: true },    // [2]
+    { coordinates: new Hex(0, 0, 0), alive: false },    // [3]
+    { coordinates: new Hex(0, 1, -1), alive: true },    // [4]
+    { coordinates: new Hex(1, -1, 0), alive: true },    // [5]
+    { coordinates: new Hex(1, 0, -1), alive: true },    // [6]
 ]
 
 describe('generateGrid', () => {
@@ -34,14 +44,14 @@ describe('generateGrid', () => {
 })
 
 describe('getNewGridOnCellClick', () => {
-    const oneLivingCellGrid: IGrid = [
-        { coordinates: new Hex(-1, 0, 1), alive: false },
-        { coordinates: new Hex(-1, 1, 0), alive: false },
-        { coordinates: new Hex(0, -1, 1), alive: false },
-        { coordinates: new Hex(0, 0, 0), alive: false },
-        { coordinates: new Hex(0, 1, -1), alive: false },
-        { coordinates: new Hex(1, -1, 0), alive: true },
-        { coordinates: new Hex(1, 0, -1), alive: false },
+    const oneLivingCellGrid: IGrid = [                      // 7 cells:
+        { coordinates: new Hex(-1, 0, 1), alive: false },   // [0]
+        { coordinates: new Hex(-1, 1, 0), alive: false },   // [1]
+        { coordinates: new Hex(0, -1, 1), alive: false },   // [2]
+        { coordinates: new Hex(0, 0, 0), alive: false },    // [3]
+        { coordinates: new Hex(0, 1, -1), alive: false },   // [4]
+        { coordinates: new Hex(1, -1, 0), alive: true },    // [5]
+        { coordinates: new Hex(1, 0, -1), alive: false },   // [6]
     ]
     test('clicking on a virgin grid should return a one living cell grid:', () => {
         const clickedCell: ICell = virginGridWithARadiusOfOne[5]
@@ -60,15 +70,6 @@ describe('getNewGridOnCellClick', () => {
 })
 
 describe('getNumberOfLivingNeighboringCells', () => {
-    const multipleLivingCellsGrid: IGrid = [
-        { coordinates: new Hex(-1, 0, 1), alive: true },
-        { coordinates: new Hex(-1, 1, 0), alive: false },
-        { coordinates: new Hex(0, -1, 1), alive: true },
-        { coordinates: new Hex(0, 0, 0), alive: false },
-        { coordinates: new Hex(0, 1, -1), alive: true },
-        { coordinates: new Hex(1, -1, 0), alive: true },
-        { coordinates: new Hex(1, 0, -1), alive: true },
-    ]
     test('targeting the origin on a virgin grid should return "0":', () => {
         const targetedCell = virginGridWithARadiusOfOne[3]
         const { coordinates } = targetedCell
@@ -81,11 +82,11 @@ describe('getNumberOfLivingNeighboringCells', () => {
         const result = getNumberOfLivingNeighboringCells(virginGridWithARadiusOfOne, coordinates)
         expect(result).toBe(0)
     })
-    test('targeting the dead origin on a five living cells grid should return "5":', () => {
+    test('targeting the dead origin on a four living cells grid should return "4":', () => {
         const targetedCell = multipleLivingCellsGrid[3]
         const { coordinates } = targetedCell
         const result = getNumberOfLivingNeighboringCells(multipleLivingCellsGrid, coordinates)
-        expect(result).toBe(5)
+        expect(result).toBe(4)
     })
     test('targeting a dead cell on the edge surrounded by two living cells should return "2":', () => {
         const targetedCell = multipleLivingCellsGrid[5]
@@ -94,3 +95,8 @@ describe('getNumberOfLivingNeighboringCells', () => {
         expect(result).toBe(2)
     })
 })
+
+// describe('getNewCellBasedOnRules', () => {
+//     test('clicking')
+
+// })
