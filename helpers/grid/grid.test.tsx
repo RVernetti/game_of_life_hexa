@@ -20,13 +20,13 @@ const virginGridWithARadiusOfOne: IGrid = [             // 7 cells:
 ]
 
 const multipleLivingCellsGrid: IGrid = [                // 7 cells:
-    { coordinates: new Hex(-1, 0, 1), alive: false },    // [0]
+    { coordinates: new Hex(-1, 0, 1), alive: true },    // [0]
     { coordinates: new Hex(-1, 1, 0), alive: false },   // [1]
-    { coordinates: new Hex(0, -1, 1), alive: true },    // [2]
-    { coordinates: new Hex(0, 0, 0), alive: false },    // [3]
+    { coordinates: new Hex(0, -1, 1), alive: false },   // [2]
+    { coordinates: new Hex(0, 0, 0), alive: true },     // [3]
     { coordinates: new Hex(0, 1, -1), alive: true },    // [4]
     { coordinates: new Hex(1, -1, 0), alive: true },    // [5]
-    { coordinates: new Hex(1, 0, -1), alive: true },    // [6]
+    { coordinates: new Hex(1, 0, -1), alive: false },   // [6]
 ]
 
 describe('generateGrid', () => {
@@ -82,17 +82,23 @@ describe('getNumberOfLivingNeighboringCells', () => {
         const result = getNumberOfLivingNeighboringCells(virginGridWithARadiusOfOne, coordinates)
         expect(result).toBe(0)
     })
-    test('targeting the dead origin on a four living cells grid should return "4":', () => {
-        const targetedCell = multipleLivingCellsGrid[3]
+    test('targeting the living origin on a four living cells grid should return "3":', () => {
+        const targetedCell = multipleLivingCellsGrid[1]
         const { coordinates } = targetedCell
         const result = getNumberOfLivingNeighboringCells(multipleLivingCellsGrid, coordinates)
-        expect(result).toBe(4)
+        expect(result).toBe(3)
     })
-    test('targeting a dead cell on the edge surrounded by two living cells should return "2":', () => {
-        const targetedCell = multipleLivingCellsGrid[5]
+    test('targeting a living cell on the edge surrounded by one living cell (origin) should return "1":', () => {
+        const targetedCell = multipleLivingCellsGrid[0]
         const { coordinates } = targetedCell
         const result = getNumberOfLivingNeighboringCells(multipleLivingCellsGrid, coordinates)
-        expect(result).toBe(2)
+        expect(result).toBe(1)
+    })
+    test('targeting a dead cell on the edge surrounded by three living cell (origin) should return "3":', () => {
+        const targetedCell = multipleLivingCellsGrid[1]
+        const { coordinates } = targetedCell
+        const result = getNumberOfLivingNeighboringCells(multipleLivingCellsGrid, coordinates)
+        expect(result).toBe(3)
     })
 })
 
