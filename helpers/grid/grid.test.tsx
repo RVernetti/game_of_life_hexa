@@ -51,11 +51,11 @@ describe('generateGrid', () => {
 })
 
 describe('getNumberOfLivingCells', () => {
-    test('a virgin grid should return "0":', () => {
+    test('a virgin grid without living cell should return "0":', () => {
         const result = getNumberOfLivingCells(virginGridWithARadiusOfOne)
         expect(result).toBe(0)
     })
-    test('a three living cells grid should return "3":', () => {
+    test('a grid with three living cells should return "3":', () => {
         const result = getNumberOfLivingCells(multipleLivingCellsGrid)
         expect(result).toBe(3)
     })
@@ -88,7 +88,7 @@ describe('getNewGridOnCellClick', () => {
 })
 
 describe('getNumberOfLivingNeighboringCells', () => {
-    test('targeting the origin on a three living cells grid should return "3":', () => {
+    test('targeting the origin on a grid of three living cells should return "3":', () => {
         const targetedCell = multipleLivingCellsGrid[3]
         const { coordinates } = targetedCell
         const result = getNumberOfLivingNeighboringCells(multipleLivingCellsGrid, coordinates)
