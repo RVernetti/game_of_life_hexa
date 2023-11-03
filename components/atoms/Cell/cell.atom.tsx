@@ -50,6 +50,8 @@ const Cell = (props: Cell) => {
         setGrid(newGrid)
     }
 
+    //TODO: try to give a hexagonal shape to cells, keeping box shadow
+
     return (
         <button 
             className={alive ? styles.alive : styles.dead}
