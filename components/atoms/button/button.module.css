@@ -16,6 +16,11 @@
         background-color: #000000;
         color: #FFFFFF;
     }
+    .button:disabled {
+        cursor: not-allowed;
+        background-color: #FFFFFF;
+        color: #000000;    
+    }
 }
 
 @media (prefers-color-scheme: dark) {
