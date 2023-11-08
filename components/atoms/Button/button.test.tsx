@@ -23,4 +23,11 @@ describe('<Button />', () => {
         fireEvent.click(buttonElement)
         expect(onClickMock).toHaveBeenCalledTimes(1)
     })
+    test("doesn't call onClick when disabled and cliked", () => {
+        const onClickMock = jest.fn()
+        render(<Button onClick={onClickMock} disabled/>)
+        const buttonElement = screen.getByTestId('button')
+        fireEvent.click(buttonElement)
+        expect(onClickMock).toHaveBeenCalledTimes(0)
+    })
 })
