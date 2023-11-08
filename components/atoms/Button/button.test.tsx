@@ -1,4 +1,4 @@
-import { render, fireEvent, screen } from '@testing-library/react'
+import { render, fireEvent, screen, within } from '@testing-library/react'
 
 import { Button} from '..'
 
@@ -8,8 +8,21 @@ describe('<Button />', () => {
         const onClickMock = jest.fn()
         render(<Button onClick={onClickMock}>{children}</Button>)
         const buttonElement = screen.getByText(children)
-        console.log('Button element:', buttonElement)
         expect(buttonElement.textContent).toEqual(children)
-        expect(buttonElement.className).toEqual('button')
     })
+    test('calls onClick when cliked', () => {
+        const children = 'Click me!'
+        const onClickMock = jest.fn()
+        render(<Button onClick={onClickMock}>{children}</Button>)
+        const buttonElement = screen.getByText(children)
+        fireEvent.click(buttonElement)
+        expect(onClickMock).toHaveBeenCalledTimes(1)
+    })
+    test('calls the right button classname', () => {
+        const children = 'Click me!'
+        const onClickMock = jest.fn()
+        render(<Button onClick={onClickMock}>{children}</Button>)
+        const buttonElement = screen.getByText(children)
+        expect(buttonElement.className).toEqual('button')
+    }) 
 })
