@@ -19,6 +19,7 @@ const Button = (props: Button) => {
             onClick={onClick} 
             disabled={disabled}
             style={style}
+            data-testid='button'
         >
             {children}
         </button>
