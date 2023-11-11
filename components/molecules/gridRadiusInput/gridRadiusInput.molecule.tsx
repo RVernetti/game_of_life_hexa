@@ -6,7 +6,7 @@ import { useRecoilState } from 'recoil'
 import { gridRadiusState, gridState } from '@/stores/grid.store'
 import { gameRunningState } from '@/stores/game.store'
 
-import { Input, Title } from '@/components/atoms'
+import { Input, Label } from '@/components/atoms'
 import { generateGrid } from '@/helpers/grid/grid.helper'
 
 const GridRadiusInput = () => {
@@ -25,7 +25,7 @@ const GridRadiusInput = () => {
 
 
   return (
-    <Title title='Grid radius:'>
+    <Label text='Grid radius:'>
       <Input
         id='grid-radius-input'
         onChange={handleGridRadiusChange}
@@ -33,7 +33,7 @@ const GridRadiusInput = () => {
         max='15'
         defaultValue={10}
       />
-    </Title>
+    </Label>
   )
 }
 

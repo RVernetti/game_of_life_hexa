@@ -6,7 +6,7 @@ import { useRecoilState } from 'recoil'
 import { cellRadiusState } from '@/stores/grid.store'
 import { gameRunningState } from '@/stores/game.store'
 
-import { Input, Title } from '@/components/atoms'
+import { Input, Label } from '@/components/atoms'
 
 
 const CellsRadiusInput = () => {
@@ -20,7 +20,7 @@ const CellsRadiusInput = () => {
   }
 
   return (
-    <Title title="Cell radius:">
+    <Label text="Cell radius:">
       <Input
         id="cell's-radius-input"
         onChange={handleCellRadiusChange}
@@ -28,7 +28,7 @@ const CellsRadiusInput = () => {
         max='99'
         defaultValue={cellRadius}
       />
-    </Title>
+    </Label>
   )
 }
 

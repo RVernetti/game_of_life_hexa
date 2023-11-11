@@ -13,13 +13,13 @@ import { getNewGridOnCellClick } from '@/helpers/grid/grid.helper'
 
 import styles from './tile.module.css'
 
-interface Cell {
+interface Tile {
     cell: ICell
     style?: object
     children?: React.ReactNode
 }
 
-const Cell = (props: Cell) => {
+const Tile = (props: Tile) => {
     const { 
         cell,
         style,
@@ -69,4 +69,4 @@ const Cell = (props: Cell) => {
     )
 }
 
-export default Cell
+export default Tile

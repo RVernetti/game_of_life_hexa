@@ -5,7 +5,7 @@ import React from 'react'
 import { useRecoilState } from 'recoil'
 import { populationFactorState, gameRunningState } from '@/stores/game.store'
 
-import { Input, Title } from '@/components/atoms'
+import { Input, Label } from '@/components/atoms'
 
 
 const PopulationFactorInput = () => {
@@ -19,7 +19,7 @@ const PopulationFactorInput = () => {
   }
 
   return (
-    <Title title="Population factor:">
+    <Label text="Population factor:">
       <Input
         id="population-factor-input"
         onChange={handleFactorChange}
@@ -27,7 +27,7 @@ const PopulationFactorInput = () => {
         max='5'
         defaultValue={factor}
       />
-    </Title>
+    </Label>
   )
 }
 

@@ -1,5 +1,5 @@
 export { default as Button } from './Button/button.atom'
 export { default as Input } from './Input/input.atom'
 export { default as Tile } from './Tile/tile.atom'
-export { default as Title } from './Title/title.atom'
+export { default as Label } from './Label/label.atom'
 export { default as Tooltip } from './Tooltip/tooltip.atom'

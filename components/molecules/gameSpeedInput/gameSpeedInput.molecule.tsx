@@ -5,7 +5,7 @@ import React from 'react'
 import { useRecoilState } from 'recoil'
 import { gameSpeedState } from '@/stores/game.store'
 
-import { Input, Title } from '@/components/atoms'
+import { Input, Label } from '@/components/atoms'
 
 const GameSpeedInput = () => {
   const [speed, setSpeed] = useRecoilState(gameSpeedState)
@@ -17,7 +17,7 @@ const GameSpeedInput = () => {
   }
 
   return (
-    <Title title="Game speed:">
+    <Label text="Game speed:">
       <Input
         id="game-speed-input"
         onChange={handleGameSpeedChange}
@@ -25,7 +25,7 @@ const GameSpeedInput = () => {
         max='5'
         defaultValue={speed}
       />
-    </Title>
+    </Label>
   )
 }
 
